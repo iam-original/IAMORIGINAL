@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAM ORIGINAL - Coffrets Musulmans</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f1f1f1;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 200px;
+        }
+
+        .cart-btn {
+            background: #000;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #d4af37;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hero {
+            background: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .products-section {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .customize-btn {
+            width: 100%;
+            background: #000;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .modal-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #f1f1f1;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: white;
+        }
+
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .color-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            background: #f1f1f1;
+        }
+
+        .color-option:hover, .color-option.selected {
+            border-color: #d4af37;
+            background: white;
+        }
+
+        .color-option input {
+            display: none;
+        }
+
+        .color-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .color-name {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 13px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: #d4af37;
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+            transition: right 0.3s;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 25px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cart-item-name {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .cart-item-price {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .cart-item-details {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .remove-item {
+            background: #f56565;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .cart-footer {
+            padding: 25px;
+            border-top: 1px solid #e0e0e0;
+            background: #f9f9f9;
+        }
+
+        .delivery-section {
+            margin-bottom: 20px;
+        }
+
+        .delivery-label {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .delivery-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            background: white;
+        }
+
+        .delivery-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .payment-buttons {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .payment-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .paypal-btn {
+            background: #0070ba;
+            color: white;
+        }
+
+        .paypal-btn:hover {
+            background: #005a94;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1fa952;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .instagram-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-top: 2px solid #d4af37;
+            margin-top: 15px;
+        }
+
+        .cart-total-label {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .cart-total-amount {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #d4af37;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #000;
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="https://i.imgur.com/5EjzCe7.png" alt="IAM ORIGINAL" class="logo">
+            <button class="cart-btn" onclick="toggleCart()">
+                Panier
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Coffrets Musulmans Personnalisés</h1>
+        <p>Créez votre coffret cadeau unique</p>
+    </section>
+
+    <section class="products-section">
+        <h2 class="section-title">Nos Coffrets</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://i.imgur.com/9rhsHam.jpg" class="product-image" alt="Box Mini" crossorigin="anonymous">
+                <div class="product-info">
+                    <h3 class="product-name">BOX MINI</h3>
+                    <div class="product-price">22€</div>
+                    <p class="product-description">Tapis personnalisé + Tasbih ou Musc<br>Boîte cadeau incluse<br><em style="color: #d4af37; font-size: 13px;">-3€ sans personnalisation</em></p>
+                    <button class="customize-btn" onclick="openCustomize('Box Mini', 22, 'mini')">Personnaliser ma commande</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://i.imgur.com/jiA60FK.jpg" class="product-image" alt="Box Simple" crossorigin="anonymous">
+                <div class="product-info">
+                    <h3 class="product-name">BOX SIMPLE</h3>
+                    <div class="product-price">26€</div>
+                    <p class="product-description">Tapis personnalisé + Tasbih + Musc<br>Boîte cadeau incluse<br><em style="color: #d4af37; font-size: 13px;">-3€ sans personnalisation</em></p>
+                    <button class="customize-btn" onclick="openCustomize('Box Simple', 26, 'simple')">Personnaliser ma commande</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://i.imgur.com/kLvfBv2.jpg" class="product-image" alt="Box Médium" crossorigin="anonymous">
+                <div class="product-info">
+                    <h3 class="product-name">BOX MÉDIUM</h3>
+                    <div class="product-price">28€</div>
+                    <p class="product-description">Tapis personnalisé + Tasbih + Musc + Livre<br>Boîte cadeau incluse<br><em style="color: #d4af37; font-size: 13px;">-3€ sans personnalisation</em></p>
+                    <button class="customize-btn" onclick="openCustomize('Box Médium', 28, 'medium')">Personnaliser ma commande</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Articles à l'unité</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-info" style="padding-top: 40px;">
+                    <h3 class="product-name">TAPIS PERSONNALISÉ</h3>
+                    <div class="product-price">18€</div>
+                    <p class="product-description">Tapis avec broderie personnalisée</p>
+                    <button class="customize-btn" onclick="openCustomize('Tapis personnalisé', 18, 'tapis_perso')">Personnaliser ma commande</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-info" style="padding-top: 40px;">
+                    <h3 class="product-name">TAPIS DE PRIÈRE</h3>
+                    <div class="product-price">12€</div>
+                    <p class="product-description">Tapis classique</p>
+                    <button class="customize-btn" onclick="openCustomize('Tapis de prière', 12, 'tapis')">Choisir la couleur</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="customizeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Personnaliser</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="customizeForm">
+                    <div class="form-group">
+                        <label class="form-label">Couleur du tapis</label>
+                        <div class="color-options">
+                            <label class="color-option">
+                                <input type="radio" name="tapisColor" value="Bleu" required>
+                                <div class="color-circle" style="background: #1e3a8a;"></div>
+                                <div class="color-name">Bleu</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="tapisColor" value="Beige">
+                                <div class="color-circle" style="background: #f5f5dc;"></div>
+                                <div class="color-name">Beige</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="tapisColor" value="Blanc">
+                                <div class="color-circle" style="background: white; border: 2px solid #ccc;"></div>
+                                <div class="color-name">Blanc</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="tapisColor" value="Noir">
+                                <div class="color-circle" style="background: #000;"></div>
+                                <div class="color-name">Noir</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="tapisColor" value="Rose">
+                                <div class="color-circle" style="background: #ffc0cb;"></div>
+                                <div class="color-name">Rose</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="tapisColor" value="Gris">
+                                <div class="color-circle" style="background: #9ca3af;"></div>
+                                <div class="color-name">Gris</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="prenomGroup">
+                        <label class="form-label">Prénom à broder</label>
+                        <input type="text" class="form-input" name="prenom" placeholder="Ex: Sarah">
+                    </div>
+
+                    <div class="form-group" id="prenomColorGroup">
+                        <label class="form-label">Couleur broderie</label>
+                        <div class="color-options">
+                            <label class="color-option">
+                                <input type="radio" name="prenomColor" value="Blanc">
+                                <div class="color-circle" style="background: white; border: 2px solid #ccc;"></div>
+                                <div class="color-name">Blanc</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="prenomColor" value="Argenté">
+                                <div class="color-circle" style="background: linear-gradient(135deg, #c0c0c0, #e8e8e8);"></div>
+                                <div class="color-name">Argenté</div>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="prenomColor" value="Doré">
+                                <div class="color-circle" style="background: linear-gradient(135deg, #d4af37, #f4d03f);"></div>
+                                <div class="color-name">Doré</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="accessoireGroup" style="display: none;">
+                        <label class="form-label">Choisir accessoire</label>
+                        <select class="form-input" name="accessoire">
+                            <option value="Tasbih">Tasbih</option>
+                            <option value="Musc">Musc</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="add-to-cart-btn">Ajouter au panier</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Mon Panier</h3>
+            <button class="close-modal" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">Votre panier est vide</div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="delivery-section">
+                <label class="delivery-label">Informations de livraison</label>
+                <input type="text" class="delivery-input" id="customerName" placeholder="Votre nom complet">
+                <input type="text" class="delivery-input" id="customerPhone" placeholder="Téléphone">
+                <input type="text" class="delivery-input" id="customerAddress" placeholder="Adresse complète">
+                <input type="text" class="delivery-input" id="customerCity" placeholder="Ville et code postal">
+                
+                <label class="delivery-label" style="margin-top: 15px;">Mode de livraison</label>
+                <select class="delivery-select" id="deliveryMode" onchange="updateTotal()">
+                    <option value="">Choisir un mode</option>
+                    <option value="vinted|3|3-5 jours">Vinted (~3€ | 3-5 jours) - Recommandé</option>
+                    <option value="mondial|4|1-2 semaines">Mondial Relay (~4€ | 1-2 semaines)</option>
+                    <option value="colissimo|5|1-2 semaines">Colissimo (~5€ | 1-2 semaines)</option>
+                </select>
+            </div>
+            
+            <div class="cart-total">
+                <span class="cart-total-label">TOTAL (livraison incluse)</span>
+                <span class="cart-total-amount" id="cartTotal">0€</span>
+            </div>
+
+            <div class="payment-buttons">
+                <button class="payment-btn whatsapp-btn" id="validateBtn" onclick="validateOrder()" style="display: none;">
+                    📱 Envoyer sur WhatsApp
+                </button>
+                <div id="vintedInfo" style="display: none; background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
+                    <strong>📱 Mode Vinted :</strong><br>
+                    Envoyez-nous votre commande sur WhatsApp et vous recevrez le lien de l'annonce Vinted pour régler en toute sécurité ! 🔒
+                </div>
+                
+                <button class="payment-btn paypal-btn" id="paypalBtn" onclick="payWithPayPal()" style="display: none;">
+                    💳 Payer avec PayPal
+                </button>
+                <div id="paypalInfo" style="display: none; background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
+                    <strong>⚠️ Important :</strong><br>
+                    Après le paiement PayPal, vous DEVEZ nous envoyer le récapitulatif de votre commande sur WhatsApp. Sans confirmation, votre commande ne sera pas traitée et vous serez remboursé.<br><br>
+                    Merci de votre confiance ! 🙏
+                </div>
+                
+                <p style="text-align: center; font-size: 13px; color: #666; margin-top: 10px;" id="selectDeliveryText">
+                    Sélectionnez un mode de livraison pour continuer
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let currentProduct = {};
+
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const input = this.querySelector('input');
+                document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
+                    r.closest('.color-option').classList.remove('selected');
+                });
+                this.classList.add('selected');
+                input.checked = true;
+            });
+        });
+
+        function openCustomize(name, price, type) {
+            currentProduct = { name, price, type };
+            document.getElementById('modalTitle').textContent = `Personnaliser ${name}`;
+            document.getElementById('customizeModal').classList.add('active');
+            
+            const prenomGroup = document.getElementById('prenomGroup');
+            const prenomColorGroup = document.getElementById('prenomColorGroup');
+            const accessoireGroup = document.getElementById('accessoireGroup');
+            
+            if (type === 'tapis') {
+                prenomGroup.style.display = 'none';
+                prenomColorGroup.style.display = 'none';
+            } else {
+                prenomGroup.style.display = 'block';
+                prenomColorGroup.style.display = 'block';
+            }
+            
+            accessoireGroup.style.display = type === 'mini' ? 'block' : 'none';
+            
+            document.getElementById('customizeForm').reset();
+            document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+        }
+
+        function closeModal() {
+            document.getElementById('customizeModal').classList.remove('active');
+        }
+
+        document.getElementById('customizeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            const prenom = formData.get('prenom');
+            let finalPrice = currentProduct.price;
+            
+            // Si box et pas de prénom = -3€
+            if ((currentProduct.type === 'mini' || currentProduct.type === 'simple' || currentProduct.type === 'medium') && !prenom) {
+                finalPrice = finalPrice - 3;
+            }
+            
+            cart.push({
+                ...currentProduct,
+                price: finalPrice,
+                originalPrice: currentProduct.price,
+                tapisColor: formData.get('tapisColor'),
+                prenom: prenom || 'Sans personnalisation (-3€)',
+                prenomColor: formData.get('prenomColor') || '-',
+                accessoire: formData.get('accessoire') || '-',
+                id: Date.now()
+            });
+            
+            updateCart();
+            closeModal();
+            toggleCart();
+        });
+
+        function updateCart() {
+            document.getElementById('cartCount').textContent = cart.length;
+            const cartItems = document.getElementById('cartItems');
+            const cartFooter = document.getElementById('cartFooter');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
+                cartFooter.style.display = 'none';
+                return;
+            }
+            
+            cartFooter.style.display = 'block';
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price}€${item.price !== item.originalPrice ? ' <span style="text-decoration: line-through; color: #999; font-size: 14px;">' + item.originalPrice + '€</span>' : ''}</div>
+                    </div>
+                    <div class="cart-item-details">
+                        Tapis: ${item.tapisColor}<br>
+                        ${item.prenom && item.prenom !== '-' && !item.prenom.includes('Sans personnalisation') ? `Prénom: ${item.prenom} (${item.prenomColor})<br>` : item.prenom.includes('Sans personnalisation') ? '<span style="color: #4caf50;">✅ Sans personnalisation (-3€)</span><br>' : ''}
+                        ${item.accessoire !== '-' ? `Accessoire: ${item.accessoire}` : ''}
+                    </div>
+                    <button class="remove-item" onclick="removeItem(${item.id})">Retirer</button>
+                </div>
+            `).join('');
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const deliveryMode = document.getElementById('deliveryMode').value;
+            let deliveryCost = 0;
+            
+            // Afficher/masquer les boutons selon le mode de livraison
+            const validateBtn = document.getElementById('validateBtn');
+            const paypalBtn = document.getElementById('paypalBtn');
+            const vintedInfo = document.getElementById('vintedInfo');
+            const paypalInfo = document.getElementById('paypalInfo');
+            const selectText = document.getElementById('selectDeliveryText');
+            
+            if (deliveryMode) {
+                deliveryCost = parseInt(deliveryMode.split('|')[1]);
+                const mode = deliveryMode.split('|')[0];
+                
+                selectText.style.display = 'none';
+                
+                if (mode === 'vinted') {
+                    // Vinted = WhatsApp direct
+                    validateBtn.style.display = 'block';
+                    vintedInfo.style.display = 'block';
+                    paypalBtn.style.display = 'none';
+                    paypalInfo.style.display = 'none';
+                } else {
+                    // Mondial Relay ou Colissimo = PayPal puis WhatsApp
+                    validateBtn.style.display = 'none';
+                    vintedInfo.style.display = 'none';
+                    paypalBtn.style.display = 'block';
+                    paypalInfo.style.display = 'block';
+                }
+            } else {
+                validateBtn.style.display = 'none';
+                paypalBtn.style.display = 'none';
+                vintedInfo.style.display = 'none';
+                paypalInfo.style.display = 'none';
+                selectText.style.display = 'block';
+            }
+            
+            const total = subtotal + deliveryCost;
+            document.getElementById('cartTotal').textContent = `${total}€`;
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        function getOrderSummary() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            const city = document.getElementById('customerCity').value;
+            const deliveryMode = document.getElementById('deliveryMode').value;
+            
+            if (!name || !phone || !address || !city || !deliveryMode) {
+                alert('⚠️ Veuillez remplir toutes les informations de livraison');
+                return null;
+            }
+            
+            const deliveryInfo = deliveryMode.split('|');
+            const deliveryName = deliveryInfo[0];
+            const deliveryCost = deliveryInfo[1];
+            const deliveryTime = deliveryInfo[2];
+            
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const total = subtotal + parseInt(deliveryCost);
+            
+            let message = `🎁 NOUVELLE COMMANDE IAM ORIGINAL\n\n`;
+            message += `👤 ${name}\n`;
+            message += `📞 ${phone}\n`;
+            message += `📍 ${address}\n`;
+            message += `🏙️ ${city}\n\n`;
+            message += `📦 COMMANDE:\n`;
+            
+            cart.forEach(item => {
+                message += `\n• ${item.name} - ${item.price}€${item.price !== item.originalPrice ? ' (Réduit de ' + item.originalPrice + '€)' : ''}\n`;
+                message += `  Tapis: ${item.tapisColor}\n`;
+                if (item.prenom && !item.prenom.includes('Sans personnalisation') && item.prenom !== '-') {
+                    message += `  Prénom: ${item.prenom} (${item.prenomColor})\n`;
+                } else if (item.prenom.includes('Sans personnalisation')) {
+                    message += `  Sans personnalisation (-3€)\n`;
+                }
+                if (item.accessoire !== '-') {
+                    message += `  Accessoire: ${item.accessoire}\n`;
+                }
+            });
+            
+            message += `\n🚚 Livraison: ${deliveryName.toUpperCase()} (+${deliveryCost}€)\n`;
+            message += `⏱️ Délai: ${deliveryTime}\n\n`;
+            message += `💰 TOTAL: ${total}€`;
+            
+            return { message, total, deliveryName };
+        }
+
+        function validateOrder() {
+            // Pour Vinted = WhatsApp direct
+            const order = getOrderSummary();
+            if (!order) return;
+            
+            const messageWithNote = order.message + '\n\n📱 En attente du lien Vinted pour régler la commande.\n\nMerci ! 🙏✨';
+            
+            // Remplace par ton vrai numéro WhatsApp
+            const phoneNumber = '33695612755';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageWithNote)}`;
+            window.open(url, '_blank');
+            
+            // Vider le panier après envoi
+            setTimeout(() => {
+                if (confirm('✅ Commande envoyée !\n\nVous allez recevoir le lien Vinted sur WhatsApp pour régler.\n\nVoulez-vous vider le panier ?')) {
+                    cart = [];
+                    updateCart();
+                    toggleCart();
+                }
+            }, 1000);
+        }
+
+        function payWithPayPal() {
+            // Pour Mondial Relay et Colissimo = PayPal puis WhatsApp
+            const order = getOrderSummary();
+            if (!order) return;
+            
+            // Générer un code de commande unique
+            const orderCode = 'CMD-' + Date.now().toString().slice(-8);
+            
+            // Sauvegarder la commande temporairement
+            localStorage.setItem('pendingOrder', JSON.stringify({
+                message: order.message,
+                total: order.total,
+                code: orderCode
+            }));
+            
+            // Créer une popup modale personnalisée
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 20px; padding: 50px 40px; max-width: 600px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;">
+                    <h2 style="font-family: 'Bodoni Moda', serif; font-size: 36px; text-align: center; margin-bottom: 15px;">Commande enregistrée !</h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 16px;">Suivez les étapes ci-dessous</p>
+                    
+                    <div style="background: #f5f5f5; padding: 25px; border-radius: 12px; margin-bottom: 30px; text-align: center;">
+                        <div style="font-size: 15px; color: #666; margin-bottom: 10px; font-family: 'Bodoni Moda', serif;">Code de commande</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 28px; font-weight: 700; letter-spacing: 3px; color: #000;">${orderCode}</div>
+                    </div>
+                    
+                    <div style="background: #fff9e6; border-left: 5px solid #f4d03f; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                        <div style="font-family: 'Bodoni Moda', serif; font-weight: 700; margin-bottom: 12px; color: #000; font-size: 18px;">💳 Étape 1 : Paiement PayPal</div>
+                        <div style="font-size: 15px; color: #666; line-height: 1.7;">Pour Mondial Relay et Colissimo, le paiement se fait via PayPal.</div>
+                    </div>
+                    
+                    <button id="paypalBtnModal" style="width: 100%; background: #0070ba; color: white; border: none; padding: 20px; border-radius: 12px; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 18px; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,112,186,0.3);">
+                        💳 Payer ${order.total}€ via PayPal
+                    </button>
+                    
+                    <div style="background: #e8f5e9; border-left: 5px solid #4caf50; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                        <div style="font-family: 'Bodoni Moda', serif; font-weight: 700; margin-bottom: 12px; color: #000; font-size: 18px;">📱 Étape 2 : Confirmation WhatsApp</div>
+                        <div style="font-size: 15px; color: #666; line-height: 1.7;">Après le paiement, confirmez votre commande sur WhatsApp.</div>
+                    </div>
+                    
+                    <button id="whatsappBtnModal" style="width: 100%; background: #25D366; color: white; border: none; padding: 20px; border-radius: 12px; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 18px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
+                        📱 Confirmer sur WhatsApp
+                    </button>
+                    
+                    <div style="margin-top: 25px; padding: 20px; background: #fff3e0; border-radius: 10px; font-size: 14px; color: #e65100; text-align: center; line-height: 1.7; border: 2px solid #ffb74d;">
+                        ⚠️ <strong>Important :</strong> Sans confirmation WhatsApp, votre commande ne sera pas traitée et vous serez remboursé.
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Bouton PayPal avec effet hover
+            const paypalBtn = document.getElementById('paypalBtnModal');
+            paypalBtn.onmouseover = function() {
+                this.style.background = '#005a94';
+                this.style.transform = 'translateY(-2px)';
+            };
+            paypalBtn.onmouseout = function() {
+                this.style.background = '#0070ba';
+                this.style.transform = 'translateY(0)';
+            };
+            paypalBtn.onclick = function() {
+                const paypalEmail = 'iamoriginal'; // Ton pseudo PayPal.me
+                const url = `https://www.paypal.com/paypalme/${paypalEmail}/${order.total}EUR`;
+                window.open(url, '_blank');
+            };
+            
+            // Bouton WhatsApp avec effet hover
+            const whatsappBtn = document.getElementById('whatsappBtnModal');
+            whatsappBtn.onmouseover = function() {
+                this.style.background = '#1fa952';
+                this.style.transform = 'translateY(-2px)';
+            };
+            whatsappBtn.onmouseout = function() {
+                this.style.background = '#25D366';
+                this.style.transform = 'translateY(0)';
+            };
+            whatsappBtn.onclick = function() {
+                const whatsappMessage = `Code: ${orderCode}\n\n` + order.message + '\n\n✅ Paiement effectué via PayPal\n💳 Montant: ' + order.total + '€\n\nMerci ! 🙏✨';
+                const phoneNumber = '33695612755'; // Ton numéro WhatsApp
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                document.body.removeChild(modal);
+                localStorage.removeItem('pendingOrder');
+                
+                setTimeout(() => {
+                    if (confirm('✅ Commande envoyée !\n\nMerci de votre confiance.\n\nVoulez-vous vider le panier ?')) {
+                        cart = [];
+                        updateCart();
+                        toggleCart();
+                    }
+                }, 500);
+            };
+            
+            // Fermer en cliquant en dehors
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    if (confirm('Voulez-vous vraiment annuler la commande ?')) {
+                        document.body.removeChild(modal);
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+</html>
