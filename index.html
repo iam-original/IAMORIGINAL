@@ -322,6 +322,7 @@
             flex: 1;
             overflow-y: auto;
             padding: 20px;
+            max-height: calc(100vh - 200px);
         }
 
         .cart-item {
@@ -368,9 +369,11 @@
         }
 
         .cart-footer {
-            padding: 25px;
+            padding: 20px;
             border-top: 1px solid #e0e0e0;
             background: #f9f9f9;
+            max-height: 60vh;
+            overflow-y: auto;
         }
 
         .delivery-section {
@@ -444,15 +447,6 @@
             background: #1fa952;
         }
 
-        .instagram-btn {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-        }
-
-        .instagram-btn:hover {
-            opacity: 0.9;
-        }
-
         .cart-total {
             display: flex;
             justify-content: space-between;
@@ -487,6 +481,41 @@
             margin-top: 15px;
         }
 
+
+        /* Checkbox pour sans personnalisation */
+        .no-custom-option {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f8ff;
+            border: 2px solid #4a90e2;
+            border-radius: 12px;
+        }
+
+        .no-custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .no-custom-checkbox input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .no-custom-checkbox label {
+            cursor: pointer;
+            font-weight: 600;
+            color: #2c5aa0;
+            font-size: 15px;
+        }
+
+        .discount-highlight {
+            color: #28a745;
+            font-weight: 700;
+        }
+
         @media (max-width: 768px) {
             .cart-sidebar {
                 width: 100%;
@@ -510,6 +539,11 @@
         <h1>Coffrets Musulmans Personnalisés</h1>
         <p>Créez votre coffret cadeau unique</p>
     </section>
+
+    <!-- Bannière Promo -->
+    <div class="promo-banner" style="background: linear-gradient(135deg, #d4af37 0%, #c79e2f 100%); color: white; padding: 25px 40px; text-align: center; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);">
+        <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; font-weight: 700; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">🎁 Promo sur les tapis Beige et Blanc : -4€ 🎁</h2>
+    </div>
 
     <section class="products-section">
         <h2 class="section-title">Nos Coffrets</h2>
@@ -582,38 +616,54 @@
                                 <input type="radio" name="tapisColor" value="Bleu" required>
                                 <div class="color-circle" style="background: #1e3a8a;"></div>
                                 <div class="color-name">Bleu</div>
+                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 2</div>
                             </label>
-                            <label class="color-option">
+                            <label class="color-option" style="position: relative;">
                                 <input type="radio" name="tapisColor" value="Beige">
                                 <div class="color-circle" style="background: #f5f5dc;"></div>
                                 <div class="color-name">Beige</div>
+                                <div style="font-size: 10px; color: #d4af37; font-weight: 700; margin-top: 3px;">🔥 14€</div>
+                                <div style="font-size: 11px; color: #666;">Stock: 5</div>
                             </label>
-                            <label class="color-option">
+                            <label class="color-option" style="position: relative;">
                                 <input type="radio" name="tapisColor" value="Blanc">
                                 <div class="color-circle" style="background: white; border: 2px solid #ccc;"></div>
                                 <div class="color-name">Blanc</div>
+                                <div style="font-size: 10px; color: #d4af37; font-weight: 700; margin-top: 3px;">🔥 14€</div>
+                                <div style="font-size: 11px; color: #666;">Stock: 7</div>
                             </label>
                             <label class="color-option">
                                 <input type="radio" name="tapisColor" value="Noir">
                                 <div class="color-circle" style="background: #000;"></div>
                                 <div class="color-name">Noir</div>
+                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 1</div>
                             </label>
                             <label class="color-option">
                                 <input type="radio" name="tapisColor" value="Rose">
                                 <div class="color-circle" style="background: #ffc0cb;"></div>
                                 <div class="color-name">Rose</div>
+                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 1</div>
                             </label>
                             <label class="color-option">
                                 <input type="radio" name="tapisColor" value="Gris">
                                 <div class="color-circle" style="background: #9ca3af;"></div>
                                 <div class="color-name">Gris</div>
+                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 1</div>
                             </label>
                         </div>
                     </div>
 
                     <div class="form-group" id="prenomGroup">
                         <label class="form-label">Prénom à broder</label>
-                        <input type="text" class="form-input" name="prenom" placeholder="Ex: Sarah">
+                        <input type="text" class="form-input" name="prenom" id="prenomInput" placeholder="Ex: Sarah">
+                        
+                        <!-- Option Sans Personnalisation -->
+                        <div class="no-custom-option">
+                            <div class="no-custom-checkbox">
+                                <input type="checkbox" id="noCustomCheckbox" onchange="toggleNoCustom()">
+                                <label for="noCustomCheckbox">Sans personnalisation <span class="discount-highlight">(-3€)</span></label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group" id="prenomColorGroup">
@@ -710,6 +760,45 @@
         let cart = [];
         let currentProduct = {};
 
+        // STOCKS PAR COULEUR DE TAPIS
+        const stockTapis = {
+            'Beige': 5,
+            'Blanc': 7,
+            'Bleu': 2,
+            'Noir': 1,
+            'Rose': 1,
+            'Gris': 1
+        };
+
+        // Stock écriture illimité (on ne vérifie pas)
+        const stockEcriture = 999;
+
+        // BLACK FRIDAY - Promo sur tapis Beige et Blanc
+        const promoColors = ['Beige', 'Blanc'];
+        const promoTapisPrice = 14; // Prix réduit pour tapis beige/blanc
+        const promoTapisDiscount = 4; // Réduction de 4€ (18€ → 14€)
+        
+        // Date de fin de la promo BLACK FRIDAY
+        const promoEndDate = new Date('2024-11-30T23:59:59');
+
+        // Vérifier si la promo est active
+        function isPromoActive() {
+            return new Date() <= promoEndDate;
+        }
+
+        // CODE PROMO GLOBAL (désactivé pour l'instant)
+        let codePromo = {};
+        let appliedPromoCode = null;
+
+        // Mettre à jour l'affichage au chargement
+        window.addEventListener('DOMContentLoaded', function() {
+            checkPromoStatus();
+        });
+
+        function checkPromoStatus() {
+            // La promo sur tapis Beige et Blanc est permanente
+        }
+
         document.querySelectorAll('.color-option').forEach(option => {
             option.addEventListener('click', function() {
                 const input = this.querySelector('input');
@@ -721,21 +810,64 @@
             });
         });
 
+        function togglePersonnalisation() {
+            const checkbox = document.getElementById('sansPersoCheckbox');
+            const prenomInput = document.getElementById('prenomInput');
+            const prenomGroup = document.getElementById('prenomGroup');
+            const prenomColorGroup = document.getElementById('prenomColorGroup');
+            
+            if (checkbox.checked) {
+                // Masquer les champs de personnalisation
+                prenomGroup.style.display = 'none';
+                prenomColorGroup.style.display = 'none';
+                prenomInput.value = '';
+                prenomInput.required = false;
+            } else {
+                // Afficher les champs de personnalisation
+                prenomGroup.style.display = 'block';
+                prenomColorGroup.style.display = 'block';
+                prenomInput.required = true;
+            }
+        }
+
+        function toggleNoCustom() {
+            const checkbox = document.getElementById('noCustomCheckbox');
+            const prenomInput = document.getElementById('prenomInput');
+            const prenomColorGroup = document.getElementById('prenomColorGroup');
+            
+            if (checkbox.checked) {
+                prenomInput.disabled = true;
+                prenomInput.value = '';
+                prenomInput.required = false;
+                prenomColorGroup.style.display = 'none';
+            } else {
+                prenomInput.disabled = false;
+                prenomInput.required = true;
+                prenomColorGroup.style.display = 'block';
+            }
+        }
+
         function openCustomize(name, price, type) {
-            currentProduct = { name, price, type };
+            currentProduct = { name, price, originalPrice: price, type };
             document.getElementById('modalTitle').textContent = `Personnaliser ${name}`;
             document.getElementById('customizeModal').classList.add('active');
             
             const prenomGroup = document.getElementById('prenomGroup');
             const prenomColorGroup = document.getElementById('prenomColorGroup');
             const accessoireGroup = document.getElementById('accessoireGroup');
+            const sansPersoGroup = document.getElementById('sansPersoGroup');
+            const sansPersoCheckbox = document.getElementById('sansPersoCheckbox');
             
             if (type === 'tapis') {
                 prenomGroup.style.display = 'none';
                 prenomColorGroup.style.display = 'none';
+                sansPersoGroup.style.display = 'none';
             } else {
                 prenomGroup.style.display = 'block';
                 prenomColorGroup.style.display = 'block';
+                sansPersoGroup.style.display = 'block';
+                sansPersoCheckbox.checked = false;
+                document.getElementById('prenomInput').required = true;
             }
             
             accessoireGroup.style.display = type === 'mini' ? 'block' : 'none';
@@ -752,22 +884,48 @@
             e.preventDefault();
             const formData = new FormData(this);
             
+            const tapisColor = formData.get('tapisColor');
             const prenom = formData.get('prenom');
-            let finalPrice = currentProduct.price;
+            const noCustomCheckbox = document.getElementById('noCustomCheckbox');
+            const sansPerso = noCustomCheckbox ? noCustomCheckbox.checked : false;
             
-            // Si box et pas de prénom = -3€
-            if ((currentProduct.type === 'mini' || currentProduct.type === 'simple' || currentProduct.type === 'medium') && !prenom) {
-                finalPrice = finalPrice - 3;
+            // Vérifier le stock de la couleur
+            if (stockTapis[tapisColor] <= 0) {
+                alert(`❌ Désolé, le tapis ${tapisColor} est en rupture de stock !`);
+                return;
             }
+            
+            let finalPrice = currentProduct.price;
+            let reductionApplied = '';
+            
+            // Appliquer la promo -4€ si tapis Beige ou Blanc
+            if (promoColors.includes(tapisColor)) {
+                finalPrice = finalPrice - promoTapisDiscount;
+                reductionApplied = ' (Promo Beige/Blanc -4€)';
+            }
+            
+            // Si box et sans personnalisation = -3€ supplémentaires
+            if ((currentProduct.type === 'mini' || currentProduct.type === 'simple' || currentProduct.type === 'medium') && (sansPerso || !prenom)) {
+                finalPrice = finalPrice - 3;
+                if (reductionApplied) {
+                    reductionApplied += ' + Sans perso -3€';
+                } else {
+                    reductionApplied = ' (Sans perso -3€)';
+                }
+            }
+            
+            // Déduire du stock
+            stockTapis[tapisColor]--;
             
             cart.push({
                 ...currentProduct,
                 price: finalPrice,
-                originalPrice: currentProduct.price,
-                tapisColor: formData.get('tapisColor'),
-                prenom: prenom || 'Sans personnalisation (-3€)',
+                originalPrice: currentProduct.originalPrice,
+                tapisColor: tapisColor,
+                prenom: (sansPerso || !prenom) ? 'Sans personnalisation (-3€)' : prenom,
                 prenomColor: formData.get('prenomColor') || '-',
                 accessoire: formData.get('accessoire') || '-',
+                promoApplied: reductionApplied,
                 id: Date.now()
             });
             
@@ -795,7 +953,7 @@
                         <div class="cart-item-price">${item.price}€${item.price !== item.originalPrice ? ' <span style="text-decoration: line-through; color: #999; font-size: 14px;">' + item.originalPrice + '€</span>' : ''}</div>
                     </div>
                     <div class="cart-item-details">
-                        Tapis: ${item.tapisColor}<br>
+                        Tapis: ${item.tapisColor}${item.promoApplied ? ' <span style="color: #d4af37; font-weight: 600;">🔥 ' + item.promoApplied + '</span>' : ''}<br>
                         ${item.prenom && item.prenom !== '-' && !item.prenom.includes('Sans personnalisation') ? `Prénom: ${item.prenom} (${item.prenomColor})<br>` : item.prenom.includes('Sans personnalisation') ? '<span style="color: #4caf50;">✅ Sans personnalisation (-3€)</span><br>' : ''}
                         ${item.accessoire !== '-' ? `Accessoire: ${item.accessoire}` : ''}
                     </div>
@@ -850,6 +1008,11 @@
         }
 
         function removeItem(id) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                // Remettre en stock la couleur
+                stockTapis[item.tapisColor]++;
+            }
             cart = cart.filter(item => item.id !== id);
             updateCart();
         }
@@ -912,7 +1075,7 @@
             
             const messageWithNote = order.message + '\n\n📱 En attente du lien Vinted pour régler la commande.\n\nMerci ! 🙏✨';
             
-            // Remplace par ton vrai numéro WhatsApp
+            // Ton numéro WhatsApp
             const phoneNumber = '33695612755';
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageWithNote)}`;
             window.open(url, '_blank');
@@ -1010,7 +1173,7 @@
             };
             whatsappBtn.onclick = function() {
                 const whatsappMessage = `Code: ${orderCode}\n\n` + order.message + '\n\n✅ Paiement effectué via PayPal\n💳 Montant: ' + order.total + '€\n\nMerci ! 🙏✨';
-                const phoneNumber = '33695612755'; // Ton numéro WhatsApp
+                const phoneNumber = '33695612755';
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
                 window.open(whatsappUrl, '_blank');
                 
