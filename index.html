@@ -2,1202 +2,697 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IAM ORIGINAL - Coffrets Musulmans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>IAM Original — Coffrets Muslim Personnalisés</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f1f1f1;
-        }
-
-        .header {
-            background: white;
-            padding: 20px 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            max-width: 200px;
-        }
-
-        .cart-btn {
-            background: #000;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 600;
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #d4af37;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .hero {
-            background: white;
-            padding: 60px 40px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .products-section {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 40px;
-        }
-
-        .section-title {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 32px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-name {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .product-description {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .customize-btn {
-            width: 100%;
-            background: #000;
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            padding: 30px;
-            border-bottom: 1px solid #e0e0e0;
-            position: relative;
-        }
-
-        .modal-title {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 28px;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 32px;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            padding: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            display: block;
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            background: #f1f1f1;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #d4af37;
-            background: white;
-        }
-
-        .color-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .color-option {
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            background: #f1f1f1;
-        }
-
-        .color-option:hover, .color-option.selected {
-            border-color: #d4af37;
-            background: white;
-        }
-
-        .color-option input {
-            display: none;
-        }
-
-        .color-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin: 0 auto 8px;
-            border: 2px solid rgba(0,0,0,0.1);
-        }
-
-        .color-name {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 13px;
-        }
-
-        .add-to-cart-btn {
-            width: 100%;
-            background: #d4af37;
-            color: white;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -450px;
-            width: 450px;
-            height: 100vh;
-            background: white;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.2);
-            transition: right 0.3s;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-sidebar.active {
-            right: 0;
-        }
-
-        .cart-header {
-            padding: 25px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .cart-title {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            max-height: calc(100vh - 200px);
-        }
-
-        .cart-item {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .cart-item-name {
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .cart-item-price {
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .cart-item-details {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.6;
-            margin-top: 10px;
-        }
-
-        .remove-item {
-            background: #f56565;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid #e0e0e0;
-            background: #f9f9f9;
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-
-        .delivery-section {
-            margin-bottom: 20px;
-        }
-
-        .delivery-label {
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .delivery-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-            background: white;
-        }
-
-        .delivery-select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .payment-buttons {
-            display: grid;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .payment-btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .paypal-btn {
-            background: #0070ba;
-            color: white;
-        }
-
-        .paypal-btn:hover {
-            background: #005a94;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-        }
-
-        .whatsapp-btn:hover {
-            background: #1fa952;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-top: 2px solid #d4af37;
-            margin-top: 15px;
-        }
-
-        .cart-total-label {
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .cart-total-amount {
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 700;
-            font-size: 24px;
-            color: #d4af37;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background: #000;
-            color: white;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Bodoni Moda', serif;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-
-        /* Checkbox pour sans personnalisation */
-        .no-custom-option {
-            margin-top: 15px;
-            padding: 15px;
-            background: #f0f8ff;
-            border: 2px solid #4a90e2;
-            border-radius: 12px;
-        }
-
-        .no-custom-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .no-custom-checkbox input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
-
-        .no-custom-checkbox label {
-            cursor: pointer;
-            font-weight: 600;
-            color: #2c5aa0;
-            font-size: 15px;
-        }
-
-        .discount-highlight {
-            color: #28a745;
-            font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-        }
+        :root{--black:#0a0a0a;--white:#fff;--off-white:#f7f6f3;--light-gray:#e8e6e1;--mid-gray:#999;--dark-gray:#333;--accent:#c9a96e;--accent-light:#ddc99e;--red:#cc0000;--green:#2ecc71;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',sans-serif}
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:var(--sans);background:var(--white);color:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+        .announcement{background:var(--black);color:var(--white);text-align:center;padding:10px 20px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;display:flex;align-items:center;justify-content:center;gap:15px}
+        .ann-logo{height:28px;flex-shrink:0}
+        .ann-sep{width:1px;height:14px;background:rgba(255,255,255,.25);flex-shrink:0}
+
+        header{background:var(--white);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--light-gray)}
+        .header-inner{max-width:1400px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center}
+        .logo{cursor:pointer;user-select:none;display:flex;align-items:center}
+        .logo img{height:120px}
+        nav{display:flex;gap:32px;align-items:center}
+        nav a{font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;color:var(--black);font-weight:500;transition:color .3s;cursor:pointer}
+        nav a:hover{color:var(--accent)}
+        .header-right{display:flex;align-items:center;gap:6px}
+        .cart-btn{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 16px;border:1px solid var(--light-gray);transition:all .3s;background:none;font-family:var(--sans)}
+        .cart-btn:hover{border-color:var(--black)}
+        .cart-btn svg{width:20px;height:20px}
+        .cart-btn-text{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+        .cart-btn-count{background:var(--black);color:var(--white);font-size:.6rem;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:700;padding:0 4px}
+        .cart-btn-count.show{display:flex}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:24px;height:1.5px;background:var(--black);margin:6px 0}
+
+        .mobile-menu{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:var(--white);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+        .mobile-menu.active{display:flex}
+        .mobile-menu a{font-family:var(--serif);font-size:1.8rem;text-decoration:none;color:var(--black);cursor:pointer}
+        .mobile-close{position:absolute;top:25px;right:30px;background:none;border:none;font-size:2rem;cursor:pointer}
+
+        .hero{position:relative;height:85vh;overflow:hidden;background:var(--black)}
+        .hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease;display:flex;align-items:center;justify-content:center}
+        .hero-slide.active{opacity:1}
+        .hero-slide-bg{position:absolute;width:100%;height:100%;background-size:cover;background-position:center}
+        .slide-1 .hero-slide-bg{background-image:url('https://i.ibb.co/84TS7CHf/Design-sans-titre-6.png');background-size:cover;background-position:center}
+        .slide-2 .hero-slide-bg{background-image:url('https://i.ibb.co/Q3QT5SHB/Design-sans-titre-3.png');background-size:cover;background-position:center}
+        .slide-3 .hero-slide-bg{background-image:url('https://i.ibb.co/20BwBsmC/Design-sans-titre-4.png');background-size:cover;background-position:center}
+        .hero-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,.4)}
+        .hero-content{position:relative;z-index:2;text-align:center;color:var(--white);padding:0 20px}
+        .hero-content h1{font-family:var(--serif);font-size:4rem;font-weight:300;letter-spacing:6px;text-transform:uppercase;margin-bottom:20px;line-height:1.2}
+        .hero-content p{font-size:.85rem;letter-spacing:3px;text-transform:uppercase;font-weight:300;margin-bottom:40px;opacity:.85}
+        .hero-btn{display:inline-block;border:1px solid var(--white);color:var(--white);padding:14px 50px;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;transition:all .4s;cursor:pointer;background:transparent;font-family:var(--sans)}
+        .hero-btn:hover{background:var(--white);color:var(--black)}
+        .hero-dots{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:3}
+        .hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s}
+        .hero-dot.active{background:var(--white);transform:scale(1.3)}
+
+        .section{padding:80px 40px;max-width:1400px;margin:0 auto}
+        .section-dark{background:var(--off-white);max-width:100%;padding:80px 40px}
+        .section-dark .section-inner{max-width:1400px;margin:0 auto}
+        .section-title{font-family:var(--serif);font-size:2.6rem;font-weight:400;text-align:center;margin-bottom:12px;letter-spacing:2px}
+        .section-subtitle{text-align:center;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--mid-gray);margin-bottom:50px}
+        .section-line{width:60px;height:1px;background:var(--accent);margin:0 auto 50px}
+
+        .categories{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+        .category-card{position:relative;height:450px;overflow:hidden;cursor:pointer}
+        .category-bg{width:100%;height:100%;transition:transform .8s;background-size:cover;background-position:center}
+        .category-card:hover .category-bg{transform:scale(1.05)}
+        .category-overlay{position:absolute;bottom:0;left:0;right:0;padding:35px;background:linear-gradient(transparent,rgba(0,0,0,.75))}
+        .category-overlay h3{font-family:var(--serif);color:var(--white);font-size:1.6rem;font-weight:400}
+        .category-overlay span{color:rgba(255,255,255,.7);font-size:.72rem;letter-spacing:2px;text-transform:uppercase}
+
+        .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
+        .products-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;max-width:800px;margin:0 auto}
+        .product-card{background:var(--white);overflow:hidden;transition:transform .3s;position:relative;display:flex;flex-direction:column}
+        .product-card:hover{transform:translateY(-4px)}
+        .product-card.out-of-stock .product-img::after{content:'RUPTURE DE STOCK';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.7rem;letter-spacing:3px;font-weight:600;z-index:2}
+        .product-card.out-of-stock .product-btn{background:var(--light-gray);border-color:var(--light-gray);color:var(--mid-gray);pointer-events:none}
+        .product-img{width:100%;aspect-ratio:1;background:var(--light-gray);position:relative;overflow:hidden}
+        .product-img img{width:100%;height:100%;object-fit:cover}
+        .product-img img.img-top{object-position:center bottom}
+        .product-info{padding:20px;display:flex;flex-direction:column;flex:1}
+        .product-info h4{font-family:var(--serif);font-size:1.1rem;font-weight:500;margin-bottom:6px}
+        .product-price{font-size:.95rem;font-weight:600;margin-bottom:10px}
+        .product-desc{font-size:.74rem;color:var(--mid-gray);line-height:1.8;margin-bottom:15px;flex:1}
+        .product-desc ul{list-style:none;padding:0}
+        .product-desc ul li{padding:1px 0}
+        .product-desc ul li::before{content:'— ';color:var(--accent)}
+        .product-btn{display:block;background:var(--black);color:var(--white);padding:11px 20px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;border:1px solid var(--black);cursor:pointer;transition:all .3s;text-align:center;width:100%;font-family:var(--sans);margin-top:auto}
+        .product-btn:hover{background:transparent;color:var(--black)}
+
+        .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:300;align-items:center;justify-content:center;overflow-y:auto;padding:20px}
+        .modal-overlay.active{display:flex}
+        .modal{background:var(--white);width:560px;max-width:100%;max-height:90vh;overflow-y:auto;position:relative}
+        .modal-close{position:sticky;top:0;float:right;background:var(--white);border:none;font-size:1.5rem;cursor:pointer;z-index:2;color:var(--black);width:45px;height:45px;display:flex;align-items:center;justify-content:center}
+        .modal-img{width:100%;aspect-ratio:16/10;background:var(--light-gray);overflow:hidden}
+        .modal-img img{width:100%;height:100%;object-fit:cover}
+        .modal-img img.img-top{object-position:center top}
+        .modal-body{padding:30px}
+        .modal-body h3{font-family:var(--serif);font-size:1.6rem;margin-bottom:5px}
+        .modal-body .mprice{font-size:1.1rem;font-weight:700;margin-bottom:15px}
+        .modal-body .mdesc{font-size:.78rem;color:var(--mid-gray);line-height:1.9;margin-bottom:25px}
+        .modal-body .mdesc ul{list-style:none;padding:0}
+        .modal-body .mdesc ul li{padding:2px 0}
+        .modal-body .mdesc ul li::before{content:'— ';color:var(--accent)}
+        .cg{margin-bottom:16px}
+        .cl{font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:block}
+        .cc{display:flex;gap:8px;flex-wrap:wrap}
+        .co{width:36px;height:36px;border:2px solid var(--light-gray);cursor:pointer;transition:all .2s;position:relative;display:flex;align-items:center;justify-content:center;font-size:.48rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+        .co:hover{border-color:var(--dark-gray)}
+        .co.sel{border-color:var(--black);box-shadow:0 0 0 2px var(--black)}
+        .co.dis{opacity:.2;pointer-events:none}
+        .co.dis::after{content:'';position:absolute;width:110%;height:1.5px;background:var(--red);transform:rotate(-45deg)}
+        .c-dore{background:linear-gradient(135deg,#d4af37,#f5d060)}
+        .c-argente{background:linear-gradient(135deg,#c0c0c0,#e8e8e8)}
+        .c-blanc-t{background:#fff;border-color:#ddd}
+        .c-noir-t{background:#222;color:#fff}
+        .c-blanc{background:#fff;border-color:#ddd}
+        .c-beige{background:#d4c5a9}
+        .c-noir{background:#222;border-color:rgba(255,255,255,.3)}
+        .c-bleu{background:#4a6fa5}
+        .c-gris{background:#9e9e9e}
+        .c-rose{background:#d4a0a0}
+        .ci{width:100%;padding:12px 16px;border:1px solid var(--light-gray);font-family:var(--sans);font-size:.85rem;outline:none}
+        .ci:focus{border-color:var(--black)}
+        .ck{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:.82rem;padding:8px 0}
+        .ck input[type=checkbox]{width:18px;height:18px;accent-color:var(--black);cursor:pointer;flex-shrink:0}
+        .ck-p{font-weight:600}
+        .ck-p.disc{color:var(--green)}
+        .ck-p.extra{color:var(--accent)}
+        .mdiv{height:1px;background:var(--light-gray);margin:14px 0}
+        .mtotal{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-top:1px solid var(--light-gray);margin-top:10px}
+        .mtotal-l{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid-gray)}
+        .mtotal-p{font-family:var(--serif);font-size:1.8rem;font-weight:500}
+        .madd{width:100%;padding:14px;background:var(--black);color:var(--white);border:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .3s;margin-top:15px}
+        .madd:hover{background:var(--dark-gray)}
+
+        .compose-section{background:var(--black);color:var(--white);padding:80px 40px}
+        .compose-inner{max-width:1100px;margin:0 auto}
+        .compose-section .section-title{color:var(--white)}
+        .compose-section .section-subtitle{color:rgba(255,255,255,.5)}
+        .compose-section .section-line{background:var(--accent)}
+        .compose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}
+        .citem{border:1px solid rgba(255,255,255,.1);transition:all .3s;cursor:pointer}
+        .citem:hover{border-color:var(--accent)}
+        .citem.sel{border-color:var(--accent);background:rgba(201,169,110,.08)}
+        .citem.oos{opacity:.25;pointer-events:none}
+        .citem-img{width:100%;aspect-ratio:1.2;background:rgba(255,255,255,.05);overflow:hidden}
+        .citem-img img{width:100%;height:100%;object-fit:cover}
+        .citem-info{padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+        .citem-name{font-size:.72rem}
+        .citem-price{font-size:.72rem;font-weight:600;color:var(--accent)}
+        .citem-cfg{display:none;padding:0 12px 12px}
+        .citem.sel .citem-cfg{display:block}
+        .citem-cfg .cl{color:rgba(255,255,255,.5);font-size:.6rem;margin-bottom:5px}
+        .citem-cfg .ci{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff;font-size:.75rem;padding:7px 10px}
+        .citem-cfg .cc{margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap}
+        .citem-cfg .co{width:30px;height:30px;border-color:rgba(255,255,255,.3);font-size:.42rem;cursor:pointer;position:relative;z-index:5}
+        .citem-cfg .co:hover{border-color:var(--accent)}
+        .citem-cfg .co.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+        .compose-opts{max-width:420px;margin:0 auto 15px}
+        .compose-opts .ck{color:rgba(255,255,255,.8)}
+        .compose-opts .ci{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+        .ctotal{text-align:center;padding:25px 0;border-top:1px solid rgba(255,255,255,.1)}
+        .ctotal-l{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
+        .ctotal-p{font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--accent)}
+        .cbtns{display:flex;gap:12px;justify-content:center;margin-top:25px}
+        .cbtn{padding:14px 45px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .3s;border:none;background:var(--accent);color:var(--black)}
+        .cbtn:hover{background:var(--accent-light)}
+
+        .cta-section{background:var(--black);color:var(--white);text-align:center;padding:80px 40px}
+        .cta-section h2{font-family:var(--serif);font-size:2.4rem;font-weight:300;margin-bottom:15px;letter-spacing:2px}
+        .cta-section p{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:35px}
+        .cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+        .cta-btn{padding:15px 45px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .3s;display:inline-block;cursor:pointer}
+        .cta-btn-wa{background:transparent;border:1px solid var(--white);color:var(--white)}
+        .cta-btn-wa:hover{background:var(--white);color:var(--black)}
+        .cta-btn-ig{background:var(--white);color:var(--black);border:1px solid var(--white)}
+        .cta-btn-ig:hover{background:transparent;color:var(--white)}
+
+        .cat-family{margin-bottom:60px}
+        .cat-family-title{font-family:var(--serif);font-size:1.6rem;font-weight:500;margin-bottom:25px;padding-bottom:10px;border-bottom:1px solid var(--light-gray)}
+        .catalogue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+
+        .cart-page-inner{max-width:900px;margin:0 auto}
+        .cart-page-empty{text-align:center;padding:60px 0}
+        .cart-page-empty-icon{font-size:3rem;margin-bottom:15px;opacity:.3}
+        .cart-page-empty p{color:var(--mid-gray);font-size:.9rem;margin-bottom:25px}
+        .cart-page-empty a{color:var(--accent);cursor:pointer;text-decoration:underline;font-weight:500}
+        .cp-item{padding:25px 0;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:start;gap:20px}
+        .cp-item-info{flex:1}
+        .cp-item-name{font-size:.95rem;font-weight:600;margin-bottom:6px}
+        .cp-item-details{font-size:.75rem;color:var(--mid-gray);line-height:1.8}
+        .cp-item-right{text-align:right;flex-shrink:0}
+        .cp-item-price{font-size:1rem;font-weight:700;margin-bottom:8px}
+        .cp-item-remove{background:none;border:none;color:var(--red);font-size:.68rem;cursor:pointer;text-transform:uppercase;letter-spacing:1px;font-family:var(--sans)}
+        .cp-item-remove:hover{text-decoration:underline}
+        .cp-footer{margin-top:30px;padding:30px;background:var(--off-white)}
+        .cp-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+        .cp-row-label{font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid-gray)}
+        .cp-row-val{font-size:1rem;font-weight:600}
+        .cp-row-total .cp-row-val{font-family:var(--serif);font-size:1.6rem}
+        .cp-delivery{margin-bottom:20px}
+        .cp-delivery>label{font-size:.72rem;letter-spacing:1px;text-transform:uppercase;font-weight:600;display:block;margin-bottom:10px}
+        .del-opts{display:flex;gap:10px}
+        .del-opt{flex:1;padding:12px;border:1px solid var(--light-gray);text-align:center;cursor:pointer;transition:all .2s;background:var(--white)}
+        .del-opt.sel{border-color:var(--black);background:var(--black);color:var(--white)}
+        .del-opt-n{font-size:.78rem;font-weight:600}
+        .del-opt-p{font-size:.68rem;color:var(--mid-gray);margin-top:2px}
+        .del-opt.sel .del-opt-p{color:rgba(255,255,255,.6)}
+        .del-note{font-size:.72rem;color:var(--mid-gray);margin-top:10px;line-height:1.6}
+        .cp-email{margin-bottom:15px;display:none}
+        .cp-email input{width:100%;padding:11px 14px;border:1px solid var(--light-gray);font-family:var(--sans);font-size:.82rem;outline:none}
+        .cp-email input:focus{border-color:var(--black)}
+        .cp-checkout{width:100%;padding:15px;background:var(--black);color:var(--white);border:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;font-family:var(--sans);margin-top:10px}
+        .cp-checkout:hover{background:var(--dark-gray)}
+
+        .toast{position:fixed;bottom:-60px;left:50%;transform:translateX(-50%);background:var(--black);color:var(--white);padding:14px 30px;font-size:.78rem;letter-spacing:1px;z-index:260;transition:bottom .4s ease;display:flex;align-items:center;gap:12px;white-space:nowrap}
+        .toast.show{bottom:30px}
+        .toast a{color:var(--accent);text-decoration:underline;cursor:pointer;font-weight:600}
+
+        .faq-category{margin-bottom:40px}
+        .faq-category-title{font-family:var(--serif);font-size:1.4rem;font-weight:500;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--light-gray)}
+        .faq-item{border-bottom:1px solid var(--light-gray)}
+        .faq-question{padding:18px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:.88rem;font-weight:500}
+        .faq-question::after{content:'+';font-size:1.3rem;font-weight:300}
+        .faq-item.open .faq-question::after{content:'−'}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s;font-size:.82rem;color:var(--dark-gray);line-height:1.8}
+        .faq-item.open .faq-answer{max-height:300px;padding-bottom:18px}
+
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+        .contact-info h3{font-family:var(--serif);font-size:1.6rem;margin-bottom:25px}
+        .contact-link{display:flex;align-items:center;gap:15px;padding:20px;border:1px solid var(--light-gray);margin-bottom:15px;text-decoration:none;color:var(--black);transition:all .3s}
+        .contact-link:hover{border-color:var(--black);transform:translateX(5px)}
+        .contact-link-icon{width:45px;height:45px;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+        .contact-link-text h4{font-size:.85rem;font-weight:600;margin-bottom:2px}
+        .contact-link-text span{font-size:.78rem;color:var(--mid-gray)}
+        .contact-message{background:var(--off-white);padding:40px}
+        .contact-message h3{font-family:var(--serif);font-size:1.6rem;margin-bottom:15px}
+        .contact-message p{font-size:.85rem;color:var(--mid-gray);line-height:1.8}
+
+        footer{background:var(--black);color:rgba(255,255,255,.4);padding:40px;text-align:center;font-size:.72rem;letter-spacing:1.5px}
+        footer .lf{font-family:var(--serif);font-size:1.4rem;color:var(--white);letter-spacing:3px;margin-bottom:15px}
+        footer .lf span{color:var(--accent)}
+
+        .admin-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:500;align-items:center;justify-content:center}
+        .admin-overlay.active{display:flex}
+        .admin-login{background:var(--white);padding:40px;max-width:400px;width:90%;text-align:center}
+        .admin-login h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:20px}
+        .admin-login input{width:100%;padding:12px 16px;border:1px solid var(--light-gray);font-family:var(--sans);font-size:.85rem;margin-bottom:15px;outline:none}
+        .admin-login button{width:100%;padding:12px;background:var(--black);color:var(--white);border:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:600}
+        .admin-error{color:var(--red);font-size:.78rem;margin-top:10px;display:none}
+        .admin-panel{display:none;position:fixed;top:0;right:0;width:400px;max-width:90%;height:100%;background:var(--white);z-index:501;box-shadow:-4px 0 20px rgba(0,0,0,.15);overflow-y:auto}
+        .admin-panel.active{display:block}
+        .admin-panel-header{padding:25px;border-bottom:1px solid var(--light-gray);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--white);z-index:2}
+        .admin-panel-header h3{font-family:var(--serif);font-size:1.3rem}
+        .admin-close{background:none;border:none;font-size:1.5rem;cursor:pointer}
+        .ast{padding:15px 25px 8px;font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--mid-gray);font-weight:600}
+        .ai{display:flex;justify-content:space-between;align-items:center;padding:9px 25px;border-bottom:1px solid var(--off-white)}
+        .ai-n{font-size:.76rem;font-weight:500}
+        .tg{position:relative;width:36px;height:20px;flex-shrink:0}
+        .tg input{opacity:0;width:0;height:0}
+        .tg-s{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;border-radius:20px;transition:.3s}
+        .tg-s::before{content:'';position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+        .tg input:checked+.tg-s{background:var(--green)}
+        .tg input:checked+.tg-s::before{transform:translateX(16px)}
+        .a-st{font-size:.58rem;letter-spacing:1px;text-transform:uppercase;min-width:48px;text-align:right}
+        .a-st.ok{color:var(--green)}.a-st.no{color:var(--red)}
+
+        .page{display:none}.page.active{display:block}
+        .fade-in{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+
+        @media(max-width:1024px){.products-grid,.catalogue-grid{grid-template-columns:repeat(2,1fr)}.compose-grid{grid-template-columns:repeat(3,1fr)}}
+        @media(max-width:768px){.announcement{font-size:.55rem;padding:8px 10px;gap:8px}.ann-logo{height:20px}.header-inner{padding:14px 18px}.logo img{height:70px}nav{display:none}.menu-toggle{display:block}.cart-btn{padding:6px 10px}.cart-btn-text{display:none}.hero{height:50vh}.hero-content h1{font-size:1.6rem;letter-spacing:2px;margin-bottom:15px}.hero-content p{font-size:.7rem;letter-spacing:2px;margin-bottom:25px}.hero-btn{padding:10px 30px;font-size:.65rem}.section,.section-dark,.compose-section{padding:40px 15px}.section-title{font-size:1.6rem;margin-bottom:10px}.section-subtitle{font-size:.7rem;margin-bottom:30px}.section-line{margin-bottom:30px}.categories{grid-template-columns:repeat(2,1fr);gap:12px}.category-card{height:200px}.category-overlay{padding:20px}.category-overlay h3{font-size:1.2rem}.category-overlay span{font-size:.65rem}.products-grid{grid-template-columns:repeat(2,1fr);gap:12px}.products-grid-2{grid-template-columns:repeat(2,1fr);gap:12px;max-width:100%}.product-info{padding:12px}.product-info h4{font-size:.95rem;margin-bottom:4px}.product-price{font-size:.85rem;margin-bottom:8px}.product-desc{font-size:.68rem;margin-bottom:10px}.product-btn{padding:9px 15px;font-size:.62rem}.catalogue-grid{grid-template-columns:repeat(2,1fr);gap:12px}.compose-grid{grid-template-columns:repeat(2,1fr);gap:12px}.citem-info{padding:10px}.citem-info h4{font-size:.85rem}.citem-price{font-size:.75rem}.compose-opts{padding:15px}.compose-total{padding:15px}.ctotal-val{font-size:1.3rem}.cadd{padding:12px;font-size:.65rem}.contact-grid{grid-template-columns:1fr;gap:25px}.contact-link{padding:15px}.contact-link-icon{width:40px;height:40px;font-size:1rem}.contact-link-text h4{font-size:.8rem}.contact-link-text span{font-size:.72rem}.cp-item{flex-direction:column;gap:8px;align-items:flex-start;padding:15px}.cp-item-info{margin-bottom:5px}.cp-item-name{font-size:.85rem}.cp-item-details{font-size:.68rem}.cp-item-price{font-size:1.1rem}.cp-item-remove{font-size:.65rem;padding:6px 12px}.cp-item-right{text-align:left;display:flex;align-items:center;gap:12px;width:100%}}
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <img src="https://i.imgur.com/5EjzCe7.png" alt="IAM ORIGINAL" class="logo">
-            <button class="cart-btn" onclick="toggleCart()">
-                Panier
-                <span class="cart-count" id="cartCount">0</span>
+
+<div class="announcement">
+    <span>Livraison via Mondial Relais ou Vinted — Coffrets personnalisés avec soin</span>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="logo" onclick="navTo('home')"><img src="https://i.imgur.com/xFucVie.jpg" alt="IAM'Original"></div>
+        <nav>
+            <a onclick="navTo('home')">Accueil</a>
+            <a onclick="navTo('catalogue')">Catalogue</a>
+            <a onclick="navTo('faq')">FAQ</a>
+            <a onclick="navTo('contact')">Contact</a>
+        </nav>
+        <div class="header-right">
+            <button class="cart-btn" onclick="navTo('cart')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+                <span class="cart-btn-text">Voir le panier</span>
+                <div class="cart-btn-count" id="cartBadge">0</div>
             </button>
+            <button class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
         </div>
-    </header>
+    </div>
+</header>
 
-    <section class="hero">
-        <h1>Coffrets Musulmans Personnalisés</h1>
-        <p>Créez votre coffret cadeau unique</p>
-    </section>
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMenu()">&times;</button>
+    <a onclick="navTo('home');toggleMenu()">Accueil</a>
+    <a onclick="navTo('catalogue');toggleMenu()">Catalogue</a>
+    <a onclick="navTo('cart');toggleMenu()">Panier</a>
+    <a onclick="navTo('faq');toggleMenu()">FAQ</a>
+    <a onclick="navTo('contact');toggleMenu()">Contact</a>
+</div>
 
-    <!-- Bannière Promo -->
-    <div class="promo-banner" style="background: linear-gradient(135deg, #d4af37 0%, #c79e2f 100%); color: white; padding: 25px 40px; text-align: center; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);">
-        <h2 style="font-family: 'Bodoni Moda', serif; font-size: 32px; font-weight: 700; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">🎁 Promo sur les tapis Beige et Blanc : -4€ 🎁</h2>
+<div class="modal-overlay" id="modalOv"><div class="modal" id="modalBox"></div></div>
+<div class="toast" id="toast">Article ajouté ! <a onclick="navTo('cart')">Voir le panier</a></div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+    <div class="hero">
+        <div class="hero-slide slide-1 active"><div class="hero-slide-bg"></div><div class="hero-overlay"></div><div class="hero-content"><p>Coffrets personnalisés</p><h1>IAM'Original</h1><p>Des box muslim réalisées avec soin, pour offrir un cadeau unique</p><button class="hero-btn" onclick="goSection('boxmuslim')">Découvrir</button></div></div>
+        <div class="hero-slide slide-2"><div class="hero-slide-bg"></div><div class="hero-overlay"></div><div class="hero-content"><p>Collection Ramadan</p><h1>Box Ramadan</h1><p>Femme &amp; Homme — Tout inclus pour le mois sacré</p><button class="hero-btn" onclick="goSection('boxramadan')">Voir les box</button></div></div>
+        <div class="hero-slide slide-3"><div class="hero-slide-bg"></div><div class="hero-overlay"></div><div class="hero-content"><p>Sur mesure</p><h1>Compose Ta Box</h1><p>Créez votre coffret idéal, article par article</p><button class="hero-btn" onclick="goSection('composetabox')">Créer ma box</button></div></div>
+        <div class="hero-dots"><div class="hero-dot active" onclick="goSlide(0)"></div><div class="hero-dot" onclick="goSlide(1)"></div><div class="hero-dot" onclick="goSlide(2)"></div></div>
     </div>
 
-    <section class="products-section">
-        <h2 class="section-title">Nos Coffrets</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://i.imgur.com/9rhsHam.jpg" class="product-image" alt="Box Mini" crossorigin="anonymous">
-                <div class="product-info">
-                    <h3 class="product-name">BOX MINI</h3>
-                    <div class="product-price">22€</div>
-                    <p class="product-description">Tapis personnalisé + Tasbih ou Musc<br>Boîte cadeau incluse<br><em style="color: #d4af37; font-size: 13px;">-3€ sans personnalisation</em></p>
-                    <button class="customize-btn" onclick="openCustomize('Box Mini', 22, 'mini')">Personnaliser ma commande</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://i.imgur.com/jiA60FK.jpg" class="product-image" alt="Box Simple" crossorigin="anonymous">
-                <div class="product-info">
-                    <h3 class="product-name">BOX SIMPLE</h3>
-                    <div class="product-price">26€</div>
-                    <p class="product-description">Tapis personnalisé + Tasbih + Musc<br>Boîte cadeau incluse<br><em style="color: #d4af37; font-size: 13px;">-3€ sans personnalisation</em></p>
-                    <button class="customize-btn" onclick="openCustomize('Box Simple', 26, 'simple')">Personnaliser ma commande</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://i.imgur.com/kLvfBv2.jpg" class="product-image" alt="Box Médium" crossorigin="anonymous">
-                <div class="product-info">
-                    <h3 class="product-name">BOX MÉDIUM</h3>
-                    <div class="product-price">28€</div>
-                    <p class="product-description">Tapis personnalisé + Tasbih + Musc + Livre<br>Boîte cadeau incluse<br><em style="color: #d4af37; font-size: 13px;">-3€ sans personnalisation</em></p>
-                    <button class="customize-btn" onclick="openCustomize('Box Médium', 28, 'medium')">Personnaliser ma commande</button>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Articles à l'unité</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-info" style="padding-top: 40px;">
-                    <h3 class="product-name">TAPIS PERSONNALISÉ</h3>
-                    <div class="product-price">18€</div>
-                    <p class="product-description">Tapis avec broderie personnalisée</p>
-                    <button class="customize-btn" onclick="openCustomize('Tapis personnalisé', 18, 'tapis_perso')">Personnaliser ma commande</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-info" style="padding-top: 40px;">
-                    <h3 class="product-name">TAPIS DE PRIÈRE</h3>
-                    <div class="product-price">12€</div>
-                    <p class="product-description">Tapis classique</p>
-                    <button class="customize-btn" onclick="openCustomize('Tapis de prière', 12, 'tapis')">Choisir la couleur</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="modal" id="customizeModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle">Personnaliser</h3>
-                <button class="close-modal" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="customizeForm">
-                    <div class="form-group">
-                        <label class="form-label">Couleur du tapis</label>
-                        <div class="color-options">
-                            <label class="color-option">
-                                <input type="radio" name="tapisColor" value="Bleu" required>
-                                <div class="color-circle" style="background: #1e3a8a;"></div>
-                                <div class="color-name">Bleu</div>
-                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 2</div>
-                            </label>
-                            <label class="color-option" style="position: relative;">
-                                <input type="radio" name="tapisColor" value="Beige">
-                                <div class="color-circle" style="background: #f5f5dc;"></div>
-                                <div class="color-name">Beige</div>
-                                <div style="font-size: 10px; color: #d4af37; font-weight: 700; margin-top: 3px;">🔥 14€</div>
-                                <div style="font-size: 11px; color: #666;">Stock: 5</div>
-                            </label>
-                            <label class="color-option" style="position: relative;">
-                                <input type="radio" name="tapisColor" value="Blanc">
-                                <div class="color-circle" style="background: white; border: 2px solid #ccc;"></div>
-                                <div class="color-name">Blanc</div>
-                                <div style="font-size: 10px; color: #d4af37; font-weight: 700; margin-top: 3px;">🔥 14€</div>
-                                <div style="font-size: 11px; color: #666;">Stock: 7</div>
-                            </label>
-                            <label class="color-option">
-                                <input type="radio" name="tapisColor" value="Noir">
-                                <div class="color-circle" style="background: #000;"></div>
-                                <div class="color-name">Noir</div>
-                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 1</div>
-                            </label>
-                            <label class="color-option">
-                                <input type="radio" name="tapisColor" value="Rose">
-                                <div class="color-circle" style="background: #ffc0cb;"></div>
-                                <div class="color-name">Rose</div>
-                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 1</div>
-                            </label>
-                            <label class="color-option">
-                                <input type="radio" name="tapisColor" value="Gris">
-                                <div class="color-circle" style="background: #9ca3af;"></div>
-                                <div class="color-name">Gris</div>
-                                <div style="font-size: 11px; color: #666; margin-top: 3px;">Stock: 1</div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="prenomGroup">
-                        <label class="form-label">Prénom à broder</label>
-                        <input type="text" class="form-input" name="prenom" id="prenomInput" placeholder="Ex: Sarah">
-                        
-                        <!-- Option Sans Personnalisation -->
-                        <div class="no-custom-option">
-                            <div class="no-custom-checkbox">
-                                <input type="checkbox" id="noCustomCheckbox" onchange="toggleNoCustom()">
-                                <label for="noCustomCheckbox">Sans personnalisation <span class="discount-highlight">(-3€)</span></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="prenomColorGroup">
-                        <label class="form-label">Couleur broderie</label>
-                        <div class="color-options">
-                            <label class="color-option">
-                                <input type="radio" name="prenomColor" value="Blanc">
-                                <div class="color-circle" style="background: white; border: 2px solid #ccc;"></div>
-                                <div class="color-name">Blanc</div>
-                            </label>
-                            <label class="color-option">
-                                <input type="radio" name="prenomColor" value="Argenté">
-                                <div class="color-circle" style="background: linear-gradient(135deg, #c0c0c0, #e8e8e8);"></div>
-                                <div class="color-name">Argenté</div>
-                            </label>
-                            <label class="color-option">
-                                <input type="radio" name="prenomColor" value="Doré">
-                                <div class="color-circle" style="background: linear-gradient(135deg, #d4af37, #f4d03f);"></div>
-                                <div class="color-name">Doré</div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="accessoireGroup" style="display: none;">
-                        <label class="form-label">Choisir accessoire</label>
-                        <select class="form-input" name="accessoire">
-                            <option value="Tasbih">Tasbih</option>
-                            <option value="Musc">Musc</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="add-to-cart-btn">Ajouter au panier</button>
-                </form>
-            </div>
+    <div class="section fade-in">
+        <div class="section-title">Nos Collections</div>
+        <div class="section-subtitle">Trouvez le coffret parfait</div><div class="section-line"></div>
+        <div class="categories">
+            <div class="category-card" onclick="goSection('boxmuslim')"><div class="category-bg" style="background-image:url('https://i.imgur.com/QyQ6Vh0.jpg')"></div><div class="category-overlay"><span>4 coffrets</span><h3>Box Muslim</h3></div></div>
+            <div class="category-card" onclick="goSection('boxramadan')"><div class="category-bg" style="background-image:url('https://i.imgur.com/3DZvU40.jpg')"></div><div class="category-overlay"><span>Femme &amp; Homme</span><h3>Box Ramadan</h3></div></div>
+            <div class="category-card" onclick="goSection('composetabox')"><div class="category-bg" style="background-image:url('https://i.imgur.com/2xMwYWR.jpg')"></div><div class="category-overlay"><span>Sur mesure</span><h3>Compose Ta Box</h3></div></div>
         </div>
     </div>
 
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3 class="cart-title">Mon Panier</h3>
-            <button class="close-modal" onclick="toggleCart()">&times;</button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart">Votre panier est vide</div>
-        </div>
-        <div class="cart-footer" id="cartFooter" style="display: none;">
-            <div class="delivery-section">
-                <label class="delivery-label">Informations de livraison</label>
-                <input type="text" class="delivery-input" id="customerName" placeholder="Votre nom complet">
-                <input type="text" class="delivery-input" id="customerPhone" placeholder="Téléphone">
-                <input type="text" class="delivery-input" id="customerAddress" placeholder="Adresse complète">
-                <input type="text" class="delivery-input" id="customerCity" placeholder="Ville et code postal">
-                
-                <label class="delivery-label" style="margin-top: 15px;">Mode de livraison</label>
-                <select class="delivery-select" id="deliveryMode" onchange="updateTotal()">
-                    <option value="">Choisir un mode</option>
-                    <option value="vinted|3|3-5 jours">Vinted (~3€ | 3-5 jours) - Recommandé</option>
-                    <option value="mondial|4|1-2 semaines">Mondial Relay (~4€ | 1-2 semaines)</option>
-                    <option value="colissimo|5|1-2 semaines">Colissimo (~5€ | 1-2 semaines)</option>
-                </select>
-            </div>
-            
-            <div class="cart-total">
-                <span class="cart-total-label">TOTAL (livraison incluse)</span>
-                <span class="cart-total-amount" id="cartTotal">0€</span>
-            </div>
+    <div class="section-dark" id="boxmuslim"><div class="section-inner fade-in">
+        <div class="section-title">Box Muslim</div>
+        <div class="section-subtitle">Nos coffrets pour toutes les occasions</div><div class="section-line"></div>
+        <div class="products-grid" id="gBM"></div>
+    </div></div>
 
-            <div class="payment-buttons">
-                <button class="payment-btn whatsapp-btn" id="validateBtn" onclick="validateOrder()" style="display: none;">
-                    📱 Envoyer sur WhatsApp
-                </button>
-                <div id="vintedInfo" style="display: none; background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
-                    <strong>📱 Mode Vinted :</strong><br>
-                    Envoyez-nous votre commande sur WhatsApp et vous recevrez le lien de l'annonce Vinted pour régler en toute sécurité ! 🔒
-                </div>
-                
-                <button class="payment-btn paypal-btn" id="paypalBtn" onclick="payWithPayPal()" style="display: none;">
-                    💳 Payer avec PayPal
-                </button>
-                <div id="paypalInfo" style="display: none; background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
-                    <strong>⚠️ Important :</strong><br>
-                    Après le paiement PayPal, vous DEVEZ nous envoyer le récapitulatif de votre commande sur WhatsApp. Sans confirmation, votre commande ne sera pas traitée et vous serez remboursé.<br><br>
-                    Merci de votre confiance ! 🙏
-                </div>
-                
-                <p style="text-align: center; font-size: 13px; color: #666; margin-top: 10px;" id="selectDeliveryText">
-                    Sélectionnez un mode de livraison pour continuer
-                </p>
-            </div>
-        </div>
+    <div class="section fade-in" id="boxramadan">
+        <div class="section-title">Box Ramadan</div>
+        <div class="section-subtitle">Collection spéciale Ramadan — 30€</div><div class="section-line"></div>
+        <div class="products-grid-2" id="gBR"></div>
     </div>
 
-    <script>
-        let cart = [];
-        let currentProduct = {};
+    <div class="compose-section" id="composetabox"><div class="compose-inner fade-in">
+        <div class="section-title">Compose Ta Box</div>
+        <div class="section-subtitle">Sélectionnez vos articles et créez votre coffret sur mesure</div><div class="section-line"></div>
+        <div class="compose-grid" id="compGrid"></div>
+        <div class="compose-opts">
+            <label class="ck" style="color:rgba(255,255,255,.8)"><input type="checkbox" id="cBoxP" onchange="onCBoxP()"><span>Personnaliser la boîte cadeau</span><span class="ck-p extra">+5€</span></label>
+            <input class="ci" id="cBoxT" placeholder="Prénom ou mot (max 16 car.)" maxlength="16" style="display:none">
+        </div>
+        <div class="ctotal"><div class="ctotal-l">Total de votre box</div><div class="ctotal-p" id="cTotal">0,00 €</div></div>
+        <div class="cbtns"><button class="cbtn" onclick="addCompose()">Ajouter au panier</button></div>
+    </div></div>
 
-        // STOCKS PAR COULEUR DE TAPIS
-        const stockTapis = {
-            'Beige': 5,
-            'Blanc': 7,
-            'Bleu': 2,
-            'Noir': 1,
-            'Rose': 1,
-            'Gris': 1
-        };
+    <div class="cta-section fade-in">
+        <h2>Prêt à offrir un cadeau unique ?</h2>
+        <p>Contactez-nous pour passer commande ou pour toute question</p>
+        <div class="cta-btns">
+            <a href="https://wa.me/33695612755" target="_blank" class="cta-btn cta-btn-wa">Commander via WhatsApp</a>
+            <a href="https://www.instagram.com/iamoriginal._/" target="_blank" class="cta-btn cta-btn-ig">Nous écrire sur Instagram</a>
+        </div>
+    </div>
+</div>
 
-        // Stock écriture illimité (on ne vérifie pas)
-        const stockEcriture = 999;
+<!-- CATALOGUE -->
+<div class="page" id="page-catalogue">
+    <div class="section">
+        <div class="section-title">Catalogue</div>
+        <div class="section-subtitle">Tous nos produits à l'unité</div><div class="section-line"></div>
+        <div id="catContent"></div>
+    </div>
+</div>
 
-        // BLACK FRIDAY - Promo sur tapis Beige et Blanc
-        const promoColors = ['Beige', 'Blanc'];
-        const promoTapisPrice = 14; // Prix réduit pour tapis beige/blanc
-        const promoTapisDiscount = 4; // Réduction de 4€ (18€ → 14€)
-        
-        // Date de fin de la promo BLACK FRIDAY
-        const promoEndDate = new Date('2024-11-30T23:59:59');
+<!-- CART PAGE -->
+<div class="page" id="page-cart">
+    <div class="section">
+        <div class="section-title">Votre Panier</div>
+        <div class="section-subtitle" id="cartCount">0 article</div><div class="section-line"></div>
+        <div class="cart-page-inner" id="cartPage"></div>
+    </div>
+</div>
 
-        // Vérifier si la promo est active
-        function isPromoActive() {
-            return new Date() <= promoEndDate;
-        }
+<!-- FAQ -->
+<div class="page" id="page-faq">
+    <div class="section">
+        <div class="section-title">Questions Fréquentes</div>
+        <div class="section-subtitle">Tout ce que vous devez savoir</div><div class="section-line"></div>
+        <div class="faq-category"><div class="faq-category-title">Commande &amp; Personnalisation</div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Puis-je choisir la personnalisation ?</div><div class="faq-answer">Oui. Vous choisissez le prénom et les couleurs. Chaque coffret est réalisé sur mesure.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Puis-je voir un aperçu avant fabrication ?</div><div class="faq-answer">Les créations sont réalisées après validation du paiement. Consultez nos réseaux sociaux pour visualiser le rendu.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Combien de caractères pour la personnalisation ?</div><div class="faq-answer">La personnalisation est limitée à 16 caractères maximum.</div></div>
+        </div>
+        <div class="faq-category"><div class="faq-category-title">Livraison — Vinted &amp; Mondial Relay</div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Quels sont les délais de préparation ?</div><div class="faq-answer">3 à 5 jours ouvrés.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Quels sont les délais de livraison ?</div><div class="faq-answer">3 à 5 jours ouvrés une fois expédié.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Puis-je choisir mon point relais ?</div><div class="faq-answer">Oui, via le mail Mondial Relais que vous recevrez.</div></div>
+        </div>
+        <div class="faq-category"><div class="faq-category-title">Paiement &amp; Retours</div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Quels moyens de paiement ?</div><div class="faq-answer">Via Vinted (sécurisé) ou PayPal pour les commandes Mondial Relais.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Les articles personnalisés sont-ils remboursables ?</div><div class="faq-answer">Les produits personnalisés ne sont ni repris ni échangés, sauf erreur de notre part.</div></div>
+        </div>
+    </div>
+</div>
 
-        // CODE PROMO GLOBAL (désactivé pour l'instant)
-        let codePromo = {};
-        let appliedPromoCode = null;
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+    <div class="section">
+        <div class="section-title">Contact</div>
+        <div class="section-subtitle">Restons en contact</div><div class="section-line"></div>
+        <div class="contact-grid">
+            <div class="contact-info"><h3>Nos réseaux</h3>
+                <a href="https://www.instagram.com/iamoriginal._/" target="_blank" class="contact-link"><div class="contact-link-icon">IG</div><div class="contact-link-text"><h4>Instagram</h4><span>@iamoriginal._</span></div></a>
+                <a href="https://www.tiktok.com/@iamoriginaal._" target="_blank" class="contact-link"><div class="contact-link-icon">TT</div><div class="contact-link-text"><h4>TikTok</h4><span>@iamoriginaal._</span></div></a>
+                <a href="https://wa.me/33695612755" target="_blank" class="contact-link"><div class="contact-link-icon">WA</div><div class="contact-link-text"><h4>WhatsApp</h4><span>Envoyez-nous un message</span></div></a>
+            </div>
+            <div class="contact-message"><h3>Une question ?</h3><p>Contactez-nous via nos réseaux ou Vinted. Réponse sous 24 à 48h.</p><br><p>Commandes en grande quantité (événements, mariages, EVJF...) : contactez-nous pour un devis.</p></div>
+        </div>
+    </div>
+</div>
 
-        // Mettre à jour l'affichage au chargement
-        window.addEventListener('DOMContentLoaded', function() {
-            checkPromoStatus();
-        });
+<!-- ADMIN -->
+<div class="admin-overlay" id="admOv"><div class="admin-login"><h3>Admin IAM'Original</h3><input type="password" id="admPw" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')admIn()"><button onclick="admIn()">Accéder</button><div class="admin-error" id="admErr">Mot de passe incorrect</div></div></div>
+<div class="admin-panel" id="admPnl"><div class="admin-panel-header"><h3>Gestion des stocks</h3><button class="admin-close" onclick="admOut()">&times;</button></div><div id="admC"></div></div>
 
-        function checkPromoStatus() {
-            // La promo sur tapis Beige et Blanc est permanente
-        }
+<footer><div class="lf">IAM<span>'</span>Original</div><p>&copy; 2025 IAM'Original — Coffrets Muslim Personnalisés</p></footer>
 
-        document.querySelectorAll('.color-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const input = this.querySelector('input');
-                document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
-                    r.closest('.color-option').classList.remove('selected');
-                });
-                this.classList.add('selected');
-                input.checked = true;
-            });
-        });
+<script>
+const IMGS={
+'box-mini':'https://i.imgur.com/QyQ6Vh0.jpg',
+'box-simple':'https://i.imgur.com/uFjAIe7.jpg',
+'box-medium':'https://i.imgur.com/r5SbNcN.jpg',
+'box-premium':'https://i.imgur.com/koEWk3p.jpg',
+'box-ramadan-femme':'https://i.imgur.com/3DZvU40.jpg',
+'box-ramadan-homme':'https://i.imgur.com/8kYZueN.jpg',
+'tapis-epais-perso':'https://i.imgur.com/JP7Mcaq.jpg',
+'tapis-epais':'https://i.imgur.com/2xMwYWR.jpg',
+'tapis-fin-perso':'https://i.imgur.com/Pcw1tmW.jpg',
+'tapis-fin':'https://i.imgur.com/30Bw64h.jpg',
+'tasbih':'https://i.imgur.com/oGuCm3J.jpg',
+'musc':'https://i.imgur.com/vg1TcOl.jpg',
+'siwak':'https://i.imgur.com/NnBIkJb.jpg',
+'coran':'https://i.imgur.com/uKDw0v7.jpg',
+'chechia':'https://i.imgur.com/pD8RpaT.jpg',
+'savon':'https://i.imgur.com/smvPwPc.jpg',
+'citadelle':'https://i.imgur.com/jSCeCCD.jpg'
+};
 
-        function togglePersonnalisation() {
-            const checkbox = document.getElementById('sansPersoCheckbox');
-            const prenomInput = document.getElementById('prenomInput');
-            const prenomGroup = document.getElementById('prenomGroup');
-            const prenomColorGroup = document.getElementById('prenomColorGroup');
-            
-            if (checkbox.checked) {
-                // Masquer les champs de personnalisation
-                prenomGroup.style.display = 'none';
-                prenomColorGroup.style.display = 'none';
-                prenomInput.value = '';
-                prenomInput.required = false;
-            } else {
-                // Afficher les champs de personnalisation
-                prenomGroup.style.display = 'block';
-                prenomColorGroup.style.display = 'block';
-                prenomInput.required = true;
-            }
-        }
+const NC=[{id:'dore',n:'Doré',c:'c-dore'},{id:'argente',n:'Argenté',c:'c-argente'},{id:'blanc',n:'Blanc',c:'c-blanc-t'},{id:'noir',n:'Noir',c:'c-noir-t'}];
+const MCE=[{id:'blanc',n:'Blanc',c:'c-blanc'},{id:'beige',n:'Beige',c:'c-beige'},{id:'noir',n:'Noir',c:'c-noir'},{id:'bleu',n:'Bleu',c:'c-bleu'},{id:'gris',n:'Gris',c:'c-gris'},{id:'rose',n:'Rose',c:'c-rose'}];
+const MCF=[{id:'blanc',n:'Blanc',c:'c-blanc'},{id:'noir',n:'Noir',c:'c-noir'}];
 
-        function toggleNoCustom() {
-            const checkbox = document.getElementById('noCustomCheckbox');
-            const prenomInput = document.getElementById('prenomInput');
-            const prenomColorGroup = document.getElementById('prenomColorGroup');
-            
-            if (checkbox.checked) {
-                prenomInput.disabled = true;
-                prenomInput.value = '';
-                prenomInput.required = false;
-                prenomColorGroup.style.display = 'none';
-            } else {
-                prenomInput.disabled = false;
-                prenomInput.required = true;
-                prenomColorGroup.style.display = 'block';
-            }
-        }
+const P={
+'box-mini':{n:'Box Mini',p:22,cat:'bm',dl:['Boîte cadeau','Tapis de prière épais personnalisé','Tasbih ou Musc'],mc:'e',np:1,bp:1,sp:-5},
+'box-simple':{n:'Box Simple',p:26,cat:'bm',dl:['Boîte cadeau','Tapis de prière épais personnalisé','Tasbih','Musc'],mc:'e',np:1,bp:1,sp:-5},
+'box-medium':{n:'Box Médium',p:28,cat:'bm',dl:['Boîte cadeau','Tapis de prière épais personnalisé','Tasbih','Musc','Citadelle du Musulman'],mc:'e',np:1,bp:1,sp:-5},
+'box-premium':{n:'Box Prémium',p:50,cat:'bm',dl:['Boîte cadeau','Tapis de prière épais personnalisé','Tasbih','Musc','Citadelle du Musulman','Coran'],mc:'e',np:1,bp:1,sp:-5},
+'box-ramadan-femme':{n:'Box Ramadan Femme',p:30,cat:'br',dl:['Boîte cadeau personnalisée avec prénom','Tapis de prière fin personnalisé','Tasbih','Musc','Siwak','Citadelle du Musulman','Savon Lait de Chèvre'],dn:'1 seul mot à personnaliser',mc:'f',np:1,bi:1,sp:-3},
+'box-ramadan-homme':{n:'Box Ramadan Homme',p:30,cat:'br',dl:['Boîte cadeau personnalisée avec prénom','Tapis de prière fin personnalisé','Tasbih','Musc','Siwak','Citadelle du Musulman','Chéchia'],dn:'1 seul mot à personnaliser',mc:'f',np:1,bi:1,sp:-3},
+'tapis-epais-perso':{n:'Tapis épais personnalisé',p:18,cat:'tapis',dl:['Tapis épais avec broderie (or ou argent)'],mc:'e',np:1},
+'tapis-epais':{n:'Tapis de prière épais',p:12,cat:'tapis',dl:['Tapis épais classique'],mc:'e'},
+'tapis-fin-perso':{n:'Tapis fin personnalisé',p:22,cat:'tapis',dl:['Tapis fin avec broderie (or ou argent)'],mc:'f',np:1},
+'tapis-fin':{n:'Tapis de prière fin',p:15,cat:'tapis',dl:['Tapis fin classique'],mc:'f'},
+'tasbih':{n:'Tasbih',p:4,cat:'acc',dl:['Chapelet de prière']},
+'musc':{n:'Musc',p:4,cat:'acc',dl:['Parfum musc de qualité']},
+'siwak':{n:'Siwak',p:2,cat:'acc',dl:['Bâton de siwak naturel']},
+'coran':{n:'Coran',p:22,cat:'acc',dl:['Coran élégant']},
+'chechia':{n:'Chéchia',p:2.5,cat:'acc',dl:['Couvre-chef traditionnel']},
+'savon':{n:'Savon Lait de Chèvre',p:5,cat:'acc',dl:['Savon naturel au lait de chèvre']},
+'citadelle':{n:'Citadelle du Musulman',p:4.5,cat:'acc',dl:["Livre d'invocations"]}
+};
 
-        function openCustomize(name, price, type) {
-            currentProduct = { name, price, originalPrice: price, type };
-            document.getElementById('modalTitle').textContent = `Personnaliser ${name}`;
-            document.getElementById('customizeModal').classList.add('active');
-            
-            const prenomGroup = document.getElementById('prenomGroup');
-            const prenomColorGroup = document.getElementById('prenomColorGroup');
-            const accessoireGroup = document.getElementById('accessoireGroup');
-            const sansPersoGroup = document.getElementById('sansPersoGroup');
-            const sansPersoCheckbox = document.getElementById('sansPersoCheckbox');
-            
-            if (type === 'tapis') {
-                prenomGroup.style.display = 'none';
-                prenomColorGroup.style.display = 'none';
-                sansPersoGroup.style.display = 'none';
-            } else {
-                prenomGroup.style.display = 'block';
-                prenomColorGroup.style.display = 'block';
-                sansPersoGroup.style.display = 'block';
-                sansPersoCheckbox.checked = false;
-                document.getElementById('prenomInput').required = true;
-            }
-            
-            accessoireGroup.style.display = type === 'mini' ? 'block' : 'none';
-            
-            document.getElementById('customizeForm').reset();
-            document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
-        }
+const COMP_IDS=['tapis-epais-perso','tapis-epais','tapis-fin-perso','tapis-fin','tasbih','musc','siwak','coran','chechia','savon','citadelle'];
+const CAT_FAM=[
+    {t:'Tapis de prière',ids:['tapis-epais-perso','tapis-epais','tapis-fin-perso','tapis-fin']},
+    {t:'Accessoires',ids:['tasbih','musc','siwak','coran','chechia','savon','citadelle']}
+];
 
-        function closeModal() {
-            document.getElementById('customizeModal').classList.remove('active');
-        }
+let cart=[],delivery=null,stk={},csel={};
 
-        document.getElementById('customizeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            
-            const tapisColor = formData.get('tapisColor');
-            const prenom = formData.get('prenom');
-            const noCustomCheckbox = document.getElementById('noCustomCheckbox');
-            const sansPerso = noCustomCheckbox ? noCustomCheckbox.checked : false;
-            
-            // Vérifier le stock de la couleur
-            if (stockTapis[tapisColor] <= 0) {
-                alert(`❌ Désolé, le tapis ${tapisColor} est en rupture de stock !`);
-                return;
-            }
-            
-            let finalPrice = currentProduct.price;
-            let reductionApplied = '';
-            
-            // Appliquer la promo -4€ si tapis Beige ou Blanc
-            if (promoColors.includes(tapisColor)) {
-                finalPrice = finalPrice - promoTapisDiscount;
-                reductionApplied = ' (Promo Beige/Blanc -4€)';
-            }
-            
-            // Si box et sans personnalisation = -3€ supplémentaires
-            if ((currentProduct.type === 'mini' || currentProduct.type === 'simple' || currentProduct.type === 'medium') && (sansPerso || !prenom)) {
-                finalPrice = finalPrice - 3;
-                if (reductionApplied) {
-                    reductionApplied += ' + Sans perso -3€';
-                } else {
-                    reductionApplied = ' (Sans perso -3€)';
-                }
-            }
-            
-            // Déduire du stock
-            stockTapis[tapisColor]--;
-            
-            cart.push({
-                ...currentProduct,
-                price: finalPrice,
-                originalPrice: currentProduct.originalPrice,
-                tapisColor: tapisColor,
-                prenom: (sansPerso || !prenom) ? 'Sans personnalisation (-3€)' : prenom,
-                prenomColor: formData.get('prenomColor') || '-',
-                accessoire: formData.get('accessoire') || '-',
-                promoApplied: reductionApplied,
-                id: Date.now()
-            });
-            
-            updateCart();
-            closeModal();
-            toggleCart();
-        });
+function fp(n){return n.toFixed(2).replace('.',',')+' €'}
+function gmc(t){return t==='f'?MCF:MCE}
+function $id(i){return document.getElementById(i)}
+function navTo(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));$id('page-'+p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});if(p==='cart')renderCartPage();}
+function goSection(id){const el=$id(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+function toggleMenu(){$id('mobileMenu').classList.toggle('active')}
+function showToast(){const t=$id('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-        function updateCart() {
-            document.getElementById('cartCount').textContent = cart.length;
-            const cartItems = document.getElementById('cartItems');
-            const cartFooter = document.getElementById('cartFooter');
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
-                cartFooter.style.display = 'none';
-                return;
-            }
-            
-            cartFooter.style.display = 'block';
-            cartItems.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">${item.price}€${item.price !== item.originalPrice ? ' <span style="text-decoration: line-through; color: #999; font-size: 14px;">' + item.originalPrice + '€</span>' : ''}</div>
-                    </div>
-                    <div class="cart-item-details">
-                        Tapis: ${item.tapisColor}${item.promoApplied ? ' <span style="color: #d4af37; font-weight: 600;">🔥 ' + item.promoApplied + '</span>' : ''}<br>
-                        ${item.prenom && item.prenom !== '-' && !item.prenom.includes('Sans personnalisation') ? `Prénom: ${item.prenom} (${item.prenomColor})<br>` : item.prenom.includes('Sans personnalisation') ? '<span style="color: #4caf50;">✅ Sans personnalisation (-3€)</span><br>' : ''}
-                        ${item.accessoire !== '-' ? `Accessoire: ${item.accessoire}` : ''}
-                    </div>
-                    <button class="remove-item" onclick="removeItem(${item.id})">Retirer</button>
-                </div>
-            `).join('');
-            
-            updateTotal();
-        }
+function init(){loadStk();renderProds();renderCompose();renderCatalogue();renderAdmin();updateBadge();}
 
-        function updateTotal() {
-            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-            const deliveryMode = document.getElementById('deliveryMode').value;
-            let deliveryCost = 0;
-            
-            // Afficher/masquer les boutons selon le mode de livraison
-            const validateBtn = document.getElementById('validateBtn');
-            const paypalBtn = document.getElementById('paypalBtn');
-            const vintedInfo = document.getElementById('vintedInfo');
-            const paypalInfo = document.getElementById('paypalInfo');
-            const selectText = document.getElementById('selectDeliveryText');
-            
-            if (deliveryMode) {
-                deliveryCost = parseInt(deliveryMode.split('|')[1]);
-                const mode = deliveryMode.split('|')[0];
-                
-                selectText.style.display = 'none';
-                
-                if (mode === 'vinted') {
-                    // Vinted = WhatsApp direct
-                    validateBtn.style.display = 'block';
-                    vintedInfo.style.display = 'block';
-                    paypalBtn.style.display = 'none';
-                    paypalInfo.style.display = 'none';
-                } else {
-                    // Mondial Relay ou Colissimo = PayPal puis WhatsApp
-                    validateBtn.style.display = 'none';
-                    vintedInfo.style.display = 'none';
-                    paypalBtn.style.display = 'block';
-                    paypalInfo.style.display = 'block';
-                }
-            } else {
-                validateBtn.style.display = 'none';
-                paypalBtn.style.display = 'none';
-                vintedInfo.style.display = 'none';
-                paypalInfo.style.display = 'none';
-                selectText.style.display = 'block';
-            }
-            
-            const total = subtotal + deliveryCost;
-            document.getElementById('cartTotal').textContent = `${total}€`;
-        }
+function descH(p){
+    let h='<ul>'+p.dl.map(d=>'<li>'+d+'</li>').join('')+'</ul>';
+    if(p.dn)h+='<div style="margin-top:5px;font-style:italic;font-size:.7rem">'+p.dn+'</div>';
+    return h;
+}
 
-        function removeItem(id) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                // Remettre en stock la couleur
-                stockTapis[item.tapisColor]++;
-            }
-            cart = cart.filter(item => item.id !== id);
-            updateCart();
-        }
+function card(id){
+    const p=P[id],oos=stk[id]===false?' out-of-stock':'',img=IMGS[id];
+    const imgCls=id.startsWith('box-ramadan')?'img-top':'';
+    return `<div class="product-card${oos}"><div class="product-img"><img src="${img}" alt="${p.n}" class="${imgCls}" crossorigin="anonymous"></div>
+        <div class="product-info"><h4>${p.n}</h4><div class="product-price">${fp(p.p)}</div>
+        <div class="product-desc">${descH(p)}</div>
+        <button class="product-btn" onclick="openM('${id}')">Commander</button></div></div>`;
+}
 
-        function toggleCart() {
-            document.getElementById('cartSidebar').classList.toggle('active');
-        }
+function renderProds(){
+    $id('gBM').innerHTML=['box-mini','box-simple','box-medium','box-premium'].map(card).join('');
+    $id('gBR').innerHTML=['box-ramadan-femme','box-ramadan-homme'].map(card).join('');
+}
 
-        function getOrderSummary() {
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const address = document.getElementById('customerAddress').value;
-            const city = document.getElementById('customerCity').value;
-            const deliveryMode = document.getElementById('deliveryMode').value;
-            
-            if (!name || !phone || !address || !city || !deliveryMode) {
-                alert('⚠️ Veuillez remplir toutes les informations de livraison');
-                return null;
-            }
-            
-            const deliveryInfo = deliveryMode.split('|');
-            const deliveryName = deliveryInfo[0];
-            const deliveryCost = deliveryInfo[1];
-            const deliveryTime = deliveryInfo[2];
-            
-            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-            const total = subtotal + parseInt(deliveryCost);
-            
-            let message = `🎁 NOUVELLE COMMANDE IAM ORIGINAL\n\n`;
-            message += `👤 ${name}\n`;
-            message += `📞 ${phone}\n`;
-            message += `📍 ${address}\n`;
-            message += `🏙️ ${city}\n\n`;
-            message += `📦 COMMANDE:\n`;
-            
-            cart.forEach(item => {
-                message += `\n• ${item.name} - ${item.price}€${item.price !== item.originalPrice ? ' (Réduit de ' + item.originalPrice + '€)' : ''}\n`;
-                message += `  Tapis: ${item.tapisColor}\n`;
-                if (item.prenom && !item.prenom.includes('Sans personnalisation') && item.prenom !== '-') {
-                    message += `  Prénom: ${item.prenom} (${item.prenomColor})\n`;
-                } else if (item.prenom.includes('Sans personnalisation')) {
-                    message += `  Sans personnalisation (-3€)\n`;
-                }
-                if (item.accessoire !== '-') {
-                    message += `  Accessoire: ${item.accessoire}\n`;
-                }
-            });
-            
-            message += `\n🚚 Livraison: ${deliveryName.toUpperCase()} (+${deliveryCost}€)\n`;
-            message += `⏱️ Délai: ${deliveryTime}\n\n`;
-            message += `💰 TOTAL: ${total}€`;
-            
-            return { message, total, deliveryName };
-        }
+function renderCatalogue(){
+    $id('catContent').innerHTML=CAT_FAM.map(f=>`<div class="cat-family"><div class="cat-family-title">${f.t}</div><div class="catalogue-grid">${f.ids.map(card).join('')}</div></div>`).join('');
+}
 
-        function validateOrder() {
-            // Pour Vinted = WhatsApp direct
-            const order = getOrderSummary();
-            if (!order) return;
-            
-            const messageWithNote = order.message + '\n\n📱 En attente du lien Vinted pour régler la commande.\n\nMerci ! 🙏✨';
-            
-            // Ton numéro WhatsApp
-            const phoneNumber = '33695612755';
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageWithNote)}`;
-            window.open(url, '_blank');
-            
-            // Vider le panier après envoi
-            setTimeout(() => {
-                if (confirm('✅ Commande envoyée !\n\nVous allez recevoir le lien Vinted sur WhatsApp pour régler.\n\nVoulez-vous vider le panier ?')) {
-                    cart = [];
-                    updateCart();
-                    toggleCart();
-                }
-            }, 1000);
-        }
+function cpH(colors,gid,pre){
+    return `<div class="cc" id="${gid}">${colors.map(c=>{
+        const d=stk[pre+c.id]===false?' dis':'';
+        return `<div class="co ${c.c}${d}" data-c="${c.id}" onclick="event.stopPropagation();pickC(this,'${gid}')" title="${c.n}"></div>`;
+    }).join('')}</div>`;
+}
+function pickC(el,gid){if(el.classList.contains('dis'))return;document.querySelectorAll('#'+gid+' .co').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
 
-        function payWithPayPal() {
-            // Pour Mondial Relay et Colissimo = PayPal puis WhatsApp
-            const order = getOrderSummary();
-            if (!order) return;
-            
-            // Générer un code de commande unique
-            const orderCode = 'CMD-' + Date.now().toString().slice(-8);
-            
-            // Sauvegarder la commande temporairement
-            localStorage.setItem('pendingOrder', JSON.stringify({
-                message: order.message,
-                total: order.total,
-                code: orderCode
-            }));
-            
-            // Créer une popup modale personnalisée
-            const modal = document.createElement('div');
-            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
-            
-            modal.innerHTML = `
-                <div style="background: white; border-radius: 20px; padding: 50px 40px; max-width: 600px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;">
-                    <h2 style="font-family: 'Bodoni Moda', serif; font-size: 36px; text-align: center; margin-bottom: 15px;">Commande enregistrée !</h2>
-                    <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 16px;">Suivez les étapes ci-dessous</p>
-                    
-                    <div style="background: #f5f5f5; padding: 25px; border-radius: 12px; margin-bottom: 30px; text-align: center;">
-                        <div style="font-size: 15px; color: #666; margin-bottom: 10px; font-family: 'Bodoni Moda', serif;">Code de commande</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 28px; font-weight: 700; letter-spacing: 3px; color: #000;">${orderCode}</div>
-                    </div>
-                    
-                    <div style="background: #fff9e6; border-left: 5px solid #f4d03f; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
-                        <div style="font-family: 'Bodoni Moda', serif; font-weight: 700; margin-bottom: 12px; color: #000; font-size: 18px;">💳 Étape 1 : Paiement PayPal</div>
-                        <div style="font-size: 15px; color: #666; line-height: 1.7;">Pour Mondial Relay et Colissimo, le paiement se fait via PayPal.</div>
-                    </div>
-                    
-                    <button id="paypalBtnModal" style="width: 100%; background: #0070ba; color: white; border: none; padding: 20px; border-radius: 12px; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 18px; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,112,186,0.3);">
-                        💳 Payer ${order.total}€ via PayPal
-                    </button>
-                    
-                    <div style="background: #e8f5e9; border-left: 5px solid #4caf50; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
-                        <div style="font-family: 'Bodoni Moda', serif; font-weight: 700; margin-bottom: 12px; color: #000; font-size: 18px;">📱 Étape 2 : Confirmation WhatsApp</div>
-                        <div style="font-size: 15px; color: #666; line-height: 1.7;">Après le paiement, confirmez votre commande sur WhatsApp.</div>
-                    </div>
-                    
-                    <button id="whatsappBtnModal" style="width: 100%; background: #25D366; color: white; border: none; padding: 20px; border-radius: 12px; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 18px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
-                        📱 Confirmer sur WhatsApp
-                    </button>
-                    
-                    <div style="margin-top: 25px; padding: 20px; background: #fff3e0; border-radius: 10px; font-size: 14px; color: #e65100; text-align: center; line-height: 1.7; border: 2px solid #ffb74d;">
-                        ⚠️ <strong>Important :</strong> Sans confirmation WhatsApp, votre commande ne sera pas traitée et vous serez remboursé.
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // Bouton PayPal avec effet hover
-            const paypalBtn = document.getElementById('paypalBtnModal');
-            paypalBtn.onmouseover = function() {
-                this.style.background = '#005a94';
-                this.style.transform = 'translateY(-2px)';
-            };
-            paypalBtn.onmouseout = function() {
-                this.style.background = '#0070ba';
-                this.style.transform = 'translateY(0)';
-            };
-            paypalBtn.onclick = function() {
-                const paypalEmail = 'iamoriginal'; // Ton pseudo PayPal.me
-                const url = `https://www.paypal.com/paypalme/${paypalEmail}/${order.total}EUR`;
-                window.open(url, '_blank');
-            };
-            
-            // Bouton WhatsApp avec effet hover
-            const whatsappBtn = document.getElementById('whatsappBtnModal');
-            whatsappBtn.onmouseover = function() {
-                this.style.background = '#1fa952';
-                this.style.transform = 'translateY(-2px)';
-            };
-            whatsappBtn.onmouseout = function() {
-                this.style.background = '#25D366';
-                this.style.transform = 'translateY(0)';
-            };
-            whatsappBtn.onclick = function() {
-                const whatsappMessage = `Code: ${orderCode}\n\n` + order.message + '\n\n✅ Paiement effectué via PayPal\n💳 Montant: ' + order.total + '€\n\nMerci ! 🙏✨';
-                const phoneNumber = '33695612755';
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-                window.open(whatsappUrl, '_blank');
-                
-                document.body.removeChild(modal);
-                localStorage.removeItem('pendingOrder');
-                
-                setTimeout(() => {
-                    if (confirm('✅ Commande envoyée !\n\nMerci de votre confiance.\n\nVoulez-vous vider le panier ?')) {
-                        cart = [];
-                        updateCart();
-                        toggleCart();
-                    }
-                }, 500);
-            };
-            
-            // Fermer en cliquant en dehors
-            modal.onclick = function(e) {
-                if (e.target === modal) {
-                    if (confirm('Voulez-vous vraiment annuler la commande ?')) {
-                        document.body.removeChild(modal);
-                    }
-                }
-            };
-        }
-    </script>
+function openM(id){
+    if(stk[id]===false)return;
+    const p=P[id],mc=p.mc?gmc(p.mc):null,img=IMGS[id],imgCls=id.startsWith('box-ramadan')?'img-top':'';
+    let h=`<button class="modal-close" onclick="closeM()">&times;</button>
+        <div class="modal-img"><img src="${img}" alt="${p.n}" class="${imgCls}"></div><div class="modal-body">
+        <h3>${p.n}</h3><div class="mprice">${fp(p.p)}</div><div class="mdesc">${descH(p)}</div>`;
+
+    if(p.sp) h+=`<div class="cg"><label class="ck"><input type="checkbox" id="mSP" onchange="mUpd('${id}')"><span>Sans personnalisation du tapis</span><span class="ck-p disc">${p.sp}€</span></label></div><div class="mdiv"></div>`;
+
+    if(p.np) h+=`<div id="mPB"><div class="cg"><label class="cl">Prénom à personnaliser sur le tapis</label><input class="ci" id="mNm" placeholder="Prénom ou mot (max 16 car.)" maxlength="16"></div><div class="cg"><label class="cl">Couleur du prénom</label>${cpH(NC,'mNC','nc-')}</div></div>`;
+
+    if(mc) h+=`<div class="cg"><label class="cl">Couleur du tapis</label>${cpH(mc,'mMC','mc-')}</div>`;
+
+    if(p.bp) h+=`<div class="mdiv"></div><div class="cg"><label class="ck"><input type="checkbox" id="mBP" onchange="mUpd('${id}')"><span>Personnaliser la boîte cadeau</span><span class="ck-p extra">+5€</span></label><input class="ci" id="mBT" placeholder="Prénom ou mot pour la boîte (max 16 car.)" maxlength="16" style="margin-top:8px;display:none"></div>`;
+
+    if(p.bi) h+=`<div class="mdiv"></div><div class="cg"><label class="cl">Prénom pour la boîte cadeau (inclus)</label><input class="ci" id="mBT" placeholder="Prénom ou mot pour la boîte" maxlength="16"></div>`;
+
+    h+=`<div class="mtotal"><span class="mtotal-l">Total</span><span class="mtotal-p" id="mTot">${fp(p.p)}</span></div><button class="madd" onclick="addM('${id}')">Ajouter au panier</button></div>`;
+    $id('modalBox').innerHTML=h;$id('modalOv').classList.add('active');
+}
+function closeM(){$id('modalOv').classList.remove('active')}
+$id('modalOv').addEventListener('click',function(e){if(e.target===this)closeM();});
+
+function mUpd(id){
+    const p=P[id];let t=p.p;
+    const sp=$id('mSP');if(sp&&sp.checked){t+=p.sp;const b=$id('mPB');if(b)b.style.display='none';}else{const b=$id('mPB');if(b)b.style.display='';}
+    const bp=$id('mBP'),bt=$id('mBT');if(bp&&bp.checked){t+=5;if(bt)bt.style.display='block';}else if(bt&&!P[id].bi){bt.style.display='none';}
+    $id('mTot').textContent=fp(t);
+}
+
+function addM(id){
+    const p=P[id];let item={id,name:p.n,total:p.p,details:[]};
+    const sans=p.sp&&($id('mSP')&&$id('mSP').checked);
+    if(sans){item.total+=p.sp;item.details.push('Sans personnalisation du tapis ('+p.sp+'€)');}
+    if(p.np&&!sans){
+        const nm=($id('mNm')?$id('mNm').value.trim():'');if(!nm){alert('Veuillez entrer un prénom');return;}
+        item.details.push('Prénom tapis : '+nm);
+        const nc=document.querySelector('#mNC .co.sel');if(!nc){alert('Choisissez la couleur du prénom');return;}
+        item.details.push('Couleur prénom : '+NC.find(c=>c.id===nc.dataset.c).n);
+    }
+    if(p.mc){const mc=document.querySelector('#mMC .co.sel');if(!mc){alert('Choisissez la couleur du tapis');return;}item.details.push('Couleur tapis : '+gmc(p.mc).find(c=>c.id===mc.dataset.c).n);}
+    if(p.bp&&($id('mBP')&&$id('mBP').checked)){const t=($id('mBT')?$id('mBT').value.trim():'');if(!t){alert('Texte pour la boîte manquant');return;}item.total+=5;item.details.push('Boîte personnalisée : '+t+' (+5€)');}
+    if(p.bi){const t=($id('mBT')?$id('mBT').value.trim():'');if(t)item.details.push('Boîte personnalisée : '+t);}
+    cart.push(item);closeM();updateBadge();showToast();
+}
+
+function renderCompose(){
+    $id('compGrid').innerHTML=COMP_IDS.map(id=>{
+        const p=P[id],oos=stk[id]===false?' oos':'',mc=p.mc?gmc(p.mc):null,img=IMGS[id];
+        let cfg='';
+        if(p.np){cfg+=`<div class="cl">Prénom</div><input class="ci" placeholder="Max 16 car." maxlength="16" id="cn-${id}"><div class="cl" style="margin-top:6px">Couleur prénom</div>${cpH(NC,'cnc-'+id,'nc-')}`;}
+        if(mc){cfg+=`<div class="cl" style="margin-top:6px">Couleur tapis</div>${cpH(mc,'cmc-'+id,'mc-')}`;}
+        return `<div class="citem${oos}" data-cid="${id}" onclick="tgComp('${id}',this)">
+            <div class="citem-img"><img src="${img}" alt="${p.n}" loading="lazy"></div>
+            <div class="citem-info"><span class="citem-name">${p.n}</span><span class="citem-price">${fp(p.p)}</span></div>
+            ${cfg?`<div class="citem-cfg" onclick="event.stopPropagation()">${cfg}</div>`:''}
+        </div>`;
+    }).join('');
+}
+
+function tgComp(id,el){if(el.classList.contains('oos'))return;el.classList.toggle('sel');if(el.classList.contains('sel'))csel[id]={p:P[id].p};else delete csel[id];updCTotal();}
+function onCBoxP(){$id('cBoxT').style.display=$id('cBoxP').checked?'block':'none';updCTotal();}
+function updCTotal(){var k=Object.keys(csel);var t=0;for(var i=0;i<k.length;i++)t+=csel[k[i]].p;;if(($id('cBoxP')&&$id('cBoxP').checked))t+=5;$id('cTotal').textContent=fp(t);}
+
+function addCompose(){
+    const ids=Object.keys(csel);if(!ids.length){alert('Sélectionnez au moins un article');return;}
+    let details=[],total=0;
+    for(const id of ids){
+        const p=P[id];total+=p.p;let l=p.n;
+        if(p.np){const nm=($id('cn-'+id)?$id('cn-'+id).value.trim():'');if(!nm){alert('Prénom manquant pour '+p.n);return;}const nc=document.querySelector('#cnc-'+id+' .co.sel');if(!nc){alert('Couleur prénom manquante pour '+p.n);return;}l+=` — Prénom: ${nm}, Couleur: ${NC.find(c=>c.id===nc.dataset.c).n}`;}
+        if(p.mc){const mc=document.querySelector('#cmc-'+id+' .co.sel');if(!mc){alert('Couleur tapis manquante pour '+p.n);return;}l+=` — Tapis: ${gmc(p.mc).find(c=>c.id===mc.dataset.c).n}`;}
+        details.push(l);
+    }
+    if(($id('cBoxP')&&$id('cBoxP').checked)){const t=($id('cBoxT')?$id('cBoxT').value.trim():'');if(!t){alert('Texte pour la boîte manquant');return;}total+=5;details.push('Boîte personnalisée : '+t+' (+5€)');}
+    else{details.push('Boîte cadeau incluse');}
+    cart.push({id:'compose',name:'Compose Ta Box',total,details});
+    csel={};document.querySelectorAll('.citem.sel').forEach(e=>e.classList.remove('sel'));
+    $id('cBoxP').checked=false;$id('cBoxT').value='';$id('cBoxT').style.display='none';
+    document.querySelectorAll('[id^=cn-]').forEach(i=>i.value='');
+    document.querySelectorAll('.citem-cfg .co').forEach(c=>c.classList.remove('sel'));
+    updCTotal();updateBadge();showToast();
+}
+
+function updateBadge(){const b=$id('cartBadge');b.textContent=cart.length;b.classList.toggle('show',cart.length>0);}
+
+function renderCartPage(){
+    const el=$id('cartPage');$id('cartCount').textContent=cart.length+' article'+(cart.length>1?'s':'');
+    if(!cart.length){el.innerHTML=`<div class="cart-page-empty"><div class="cart-page-empty-icon">🛍</div><p>Votre panier est vide</p><a onclick="navTo('home')">Continuer mes achats</a></div>`;return;}
+    let h=cart.map((item,i)=>`<div class="cp-item"><div class="cp-item-info"><div class="cp-item-name">${item.name}</div><div class="cp-item-details">${item.details.join('<br>')}</div></div><div class="cp-item-right"><div class="cp-item-price">${fp(item.total)}</div><button class="cp-item-remove" onclick="rmCart(${i})">Supprimer</button></div></div>`).join('');
+    const sub=cart.reduce((s,i)=>s+i.total,0);
+
+    h+=`<div class="cp-footer">
+        <div class="cp-row"><span class="cp-row-label">Sous-total</span><span class="cp-row-val">${fp(sub)}</span></div>
+        <div class="cp-delivery"><label>Mode de livraison</label>
+            <div class="del-opts">
+                <div class="del-opt${delivery==='vinted'?' sel':''}" onclick="selDel('vinted')"><div class="del-opt-n">Vinted</div><div class="del-opt-p">~3€</div></div>
+                <div class="del-opt${delivery==='mondial'?' sel':''}" onclick="selDel('mondial')"><div class="del-opt-n">Mondial Relais</div><div class="del-opt-p">5,10€</div></div>
+            </div>
+            ${delivery==='vinted'?'<p class="del-note">Les frais de livraison seront visibles sur Vinted au moment où vous choisirez votre mode de livraison.</p>':''}
+            ${delivery==='mondial'?'<p class="del-note">Frais de livraison Mondial Relais inclus dans le total.</p>':''}
+        </div>
+        <div class="cp-email" id="cpEmail" ${delivery==='mondial'?'style="display:block"':''}><input type="email" placeholder="Votre email (pour choisir le point relais)" id="cpEm"></div>
+        <div class="cp-row cp-row-total"><span class="cp-row-label">Total</span><span class="cp-row-val" id="cpTot">${delivery==='mondial'?fp(sub+5.1):fp(sub)}</span></div>
+        <button class="cp-checkout" onclick="checkout()">Commander via WhatsApp</button>
+    </div>`;
+    el.innerHTML=h;
+}
+
+function rmCart(i){cart.splice(i,1);updateBadge();renderCartPage();}
+function selDel(t){delivery=t;renderCartPage();}
+
+function checkout(){
+    if(!cart.length)return;if(!delivery){alert('Choisissez un mode de livraison');return;}
+    if(delivery==='mondial'){const em=($id('cpEm')?$id('cpEm').value.trim():'');if(!em){alert('Entrez votre email pour Mondial Relais');return;}}
+    const sub=cart.reduce((s,i)=>s+i.total,0);
+    let msg='🛍️ NOUVELLE COMMANDE\n\n';
+    
+    // Articles
+    cart.forEach((item,i)=>{
+        msg+=`${i+1}. ${item.name} - ${fp(item.total)}\n`;
+        item.details.forEach(d=>{msg+=`   • ${d}\n`;});
+        msg+='\n';
+    });
+    
+    // Résumé
+    msg+=`💰 TOTAL: ${fp(sub)}\n`;
+    
+    if(delivery==='vinted'){
+        msg+=`📦 Livraison: VINTED\n`;
+        msg+=`\n✅ Paiement via Vinted`;
+    } else {
+        const em=$id('cpEm').value.trim();
+        msg+=`📦 Livraison: MONDIAL RELAIS (+5,10€)\n`;
+        msg+=`💳 TOTAL FINAL: ${fp(sub+5.1)}\n`;
+        msg+=`📧 Email: ${em}\n`;
+        msg+=`\n✅ Paiement PayPal`;
+    }
+    
+    window.open('https://wa.me/33695612755?text='+encodeURIComponent(msg),'_blank');
+}
+
+const APW='iam2025';let alc=0,alt=null;
+document.querySelector('.logo').addEventListener('click',function(){alc++;if(alt)clearTimeout(alt);alt=setTimeout(()=>alc=0,2000);if(alc>=5){alc=0;$id('admOv').classList.add('active');$id('admPw').focus();}});
+function admIn(){if($id('admPw').value===APW){$id('admOv').classList.remove('active');$id('admPnl').classList.add('active');$id('admPw').value='';$id('admErr').style.display='none';}else $id('admErr').style.display='block';}
+function admOut(){$id('admPnl').classList.remove('active');}
+$id('admOv').addEventListener('click',function(e){if(e.target===this)this.classList.remove('active');});
+
+function renderAdmin(){
+    const secs=[
+        {t:'Box Muslim',ids:['box-mini','box-simple','box-medium','box-premium']},
+        {t:'Box Ramadan',ids:['box-ramadan-femme','box-ramadan-homme']},
+        {t:'Tapis de prière',ids:['tapis-epais-perso','tapis-epais','tapis-fin-perso','tapis-fin']},
+        {t:'Accessoires',ids:['tasbih','musc','siwak','coran','chechia','savon','citadelle']},
+        {t:'Couleurs prénom',ids:NC.map(c=>({s:'nc-'+c.id,n:'Prénom '+c.n}))},
+        {t:'Couleurs tapis épais',ids:MCE.map(c=>({s:'mc-'+c.id,n:'Tapis épais '+c.n}))},
+        {t:'Couleurs tapis fin',ids:MCF.map(c=>({s:'mc-'+c.id,n:'Tapis fin '+c.n}))}
+    ];
+    let h='';
+    secs.forEach(sec=>{h+=`<div class="ast">${sec.t}</div>`;sec.ids.forEach(item=>{let sid,name;if(typeof item==='string'){sid=item;name=P[item].n;}else{sid=item.s;name=item.n;}const ck=stk[sid]!==false?'checked':'';const sc=ck?'ok':'no';const st=ck?'En stock':'Rupture';h+=`<div class="ai"><div class="ai-n">${name}</div><div style="display:flex;align-items:center;gap:5px"><label class="tg"><input type="checkbox" ${ck} data-s="${sid}" onchange="admTg(this)"><span class="tg-s"></span></label><span class="a-st ${sc}">${st}</span></div></div>`;});});
+    $id('admC').innerHTML=h;
+}
+function admTg(cb){const id=cb.dataset.s;stk[id]=cb.checked;const s=cb.closest('.ai').querySelector('.a-st');s.textContent=cb.checked?'En stock':'Rupture';s.className='a-st '+(cb.checked?'ok':'no');saveStk();renderProds();renderCompose();renderCatalogue();}
+function saveStk(){localStorage.setItem('iam_stock',JSON.stringify(stk));}
+function loadStk(){const s=localStorage.getItem('iam_stock');if(s)stk=JSON.parse(s);}
+
+let cs=0;const sls=document.querySelectorAll('.hero-slide'),dts=document.querySelectorAll('.hero-dot');
+function goSlide(n){sls[cs].classList.remove('active');dts[cs].classList.remove('active');cs=n;sls[cs].classList.add('active');dts[cs].classList.add('active');}
+setInterval(()=>goSlide((cs+1)%sls.length),5000);
+
+if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});}else{document.querySelectorAll('.fade-in').forEach(function(el){el.classList.add('visible');});}
+
+init();
+</script>
 </body>
 </html>
